@@ -40,16 +40,23 @@ const WhatWeDeliverSection: React.FC = () => {
       <h2 className="section-title font-serif text-3xl md:text-4xl lg:text-5xl font-normal mb-8">Capabilities</h2>
 
       <div className="services-grid grid grid-cols-1 md:grid-cols-3 gap-0 border border-gray-800">
-        {SERVICES.map((s, i) => (
+        {SERVICES.map((s, i) => {
+          const isLast = i === SERVICES.length - 1;
+          const bottomClass = !isLast
+            ? (i < 3 ? 'border-b md:border-b border-gray-800' : 'border-b md:border-b-0 border-gray-800')
+            : '';
+          const rightClass = (i % 3) !== 2 ? 'md:border-r border-gray-800' : '';
+
+          return (
           <div
             key={s.mark}
-            className={`service bg-white p-8 md:p-10 text-gray-800 transition-colors duration-200 hover:bg-gray-100 ${i < 3 ? 'border-b border-gray-800' : ''} ${(i % 3) !== 2 ? 'border-r border-gray-800' : ''}`}
+            className={`service bg-white p-8 md:p-10 text-gray-800 transition-colors duration-200 hover:bg-gray-100 ${bottomClass} ${rightClass}`}
           >
             <div className="si-mark text-sm text-orange-500 font-bold mb-4">{s.mark}</div>
             <div className="si-title font-serif text-xl md:text-2xl font-bold text-black mb-3">{s.title}</div>
             <div className="si-desc text-sm text-gray-800 leading-relaxed">{s.desc}</div>
           </div>
-        ))}
+          ) })}
       </div>
     </section>
   );
