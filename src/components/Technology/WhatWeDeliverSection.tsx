@@ -35,15 +35,15 @@ const SERVICES = [
 
 const WhatWeDeliverSection: React.FC = () => {
   return (
-    <section className="section py-16 px-6 md:px-14" id="capabilities">
+    <section className="section py-12 md:py-16 px-4 md:px-14" id="capabilities">
       <div className="section-label text-orange-500 uppercase tracking-widest text-sm mb-3">What We Deliver</div>
       <h2 className="section-title font-serif text-3xl md:text-4xl lg:text-5xl font-normal mb-8">Capabilities</h2>
 
-      <div className="services-grid grid grid-cols-1 md:grid-cols-3 gap-0 border border-gray-800">
+      <div className="services-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-0 border border-gray-800">
         {SERVICES.map((s, i) => (
           <div
             key={s.mark}
-            className={`service bg-white p-8 md:p-10 ${i < 3 ? 'border-b border-gray-800' : ''} ${ (i % 3) !== 2 ? 'border-r border-gray-800' : '' } transition-colors duration-200 hover:bg-gray-100`}>
+            className={`service bg-white p-6 md:p-10 transition-colors duration-200 hover:bg-gray-100 ${i < 3 ? 'md:border-b border-gray-800' : ''} ${(i % 3) !== 2 ? 'md:border-r border-gray-800' : ''}`}>
           
             <div className="si-mark text-sm text-orange-500 font-bold mb-4">{s.mark}</div>
             <div className="si-title font-serif text-xl md:text-2xl font-bold text-black mb-3">{s.title}</div>

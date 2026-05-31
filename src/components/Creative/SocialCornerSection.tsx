@@ -26,22 +26,22 @@ const SocialCornerSection: React.FC = () => {
   };
 
   return (
-    <section className="reel-section py-16 px-6 md:px-14" id="social-corner">
+    <section className="reel-section py-12 md:py-16 px-4 md:px-14" id="social-corner">
       <div className="section-label text-orange-500 uppercase tracking-widest text-sm mb-3">Social Corner</div>
       <h2 className="section-title font-serif text-3xl md:text-4xl lg:text-5xl font-normal mb-4">Scroll-stopping work,<br />built for culture</h2>
       <p className="text-gray-400 max-w-3xl mb-8" style={{ marginTop: 22, fontWeight: 300, fontSize: 17 }}>
         Authentic messaging, viral thinking, impact first. We make brands talkable in ten seconds or less.
       </p>
 
-      <div className="reel-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="reel-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {REELS.map((r) => (
           <div
             key={r.id}
-            className="reel relative aspect-[9/16] rounded-sm overflow-hidden border border-gray-800 bg-[radial-gradient(ellipse_at_center,rgba(232,80,10,0.12),transparent_40%),#0b0b0b]"
+            className="reel group relative aspect-[9/16] rounded-sm overflow-hidden border border-gray-800 bg-[radial-gradient(ellipse_at_center,rgba(232,80,10,0.12),transparent_40%),#0b0b0b]"
             onClick={playReel}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter') {/* ignore for now */} }}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playReel(e as any); } }}
           >
             <video muted loop playsInline className="absolute inset-0 w-full h-full object-cover" poster="">
               {r.src && <source src={r.src} type="video/mp4" />}
@@ -51,8 +51,8 @@ const SocialCornerSection: React.FC = () => {
               <span className="reel-cap text-sm text-gray-200">{r.caption}</span>
             </div>
 
-            <div className="reel-play absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-              <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-black text-lg transition-transform transform hover:scale-110">▶</div>
+            <div className="reel-play absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
+              <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-orange-500 flex items-center justify-center text-black text-lg transition-transform transform group-hover:scale-110">▶</div>
             </div>
           </div>
         ))}

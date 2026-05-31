@@ -77,16 +77,16 @@ const LiveDemoSection: React.FC = () => {
   };
 
   return (
-    <section className="demos section py-16 px-6 md:px-14" id="live-demos">
+    <section className="demos section py-12 md:py-16 px-4 md:px-14" id="live-demos">
       <div className="section-label text-orange-500 uppercase tracking-widest text-sm mb-3">Live Demos</div>
       <h2 className="section-title font-serif text-3xl md:text-5xl font-normal mb-4">Working platforms, not slideware</h2>
       <p className="text-sm md:text-base text-gray-400 max-w-3xl mb-8">Each of these is a built, runnable demo. Click to watch a short walkthrough.</p>
 
-      <div className="demos-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="demos-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
         {DEMOS.map((d, i) => (
           <div
             key={i}
-            className={`demo group bg-[#070707] border border-gray-800 overflow-hidden rounded-sm cursor-pointer transform transition-all duration-300 hover:scale-[1.03] hover:-translate-y-2 hover:shadow-2xl hover:border-orange-600`}
+            className={`demo group bg-[#070707] border border-gray-800 overflow-hidden rounded-sm cursor-pointer transform transition-all duration-300 md:hover:scale-[1.03] md:hover:-translate-y-2 md:hover:shadow-2xl md:hover:border-orange-600`}
             onClick={() => (d.action === "contact" ? handleContact() : handlePlay(i))}
             role={d.action === "contact" ? "link" : "button"}
             tabIndex={0}
@@ -94,7 +94,7 @@ const LiveDemoSection: React.FC = () => {
               if (e.key === "Enter" || e.key === " ") (d.action === "contact" ? handleContact() : handlePlay(i));
             }}
           >
-            <div className="demo-thumb relative h-64 md:h-56 lg:h-72">
+            <div className="demo-thumb relative h-56 sm:h-64 md:h-56 lg:h-72">
               {d.badge && (
                 <span className="demo-badge absolute top-3 left-3 text-xs text-orange-500 uppercase tracking-widest bg-black/40 px-3 py-1 rounded">{d.badge}</span>
               )}
@@ -118,7 +118,7 @@ const LiveDemoSection: React.FC = () => {
                   loop
                   playsInline
                 >
-                  <source src={d.src} type="video/mp4" />
+                  <source src={d.src || ""} type="video/mp4" />
                 </video>
               ) : null}
             </div>

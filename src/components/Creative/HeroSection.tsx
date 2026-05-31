@@ -4,7 +4,7 @@ import React from "react";
 const HeroSection: React.FC = () => {
     return (
         <div className="page" id="page-creative">
-                <section className="vd-hero relative overflow-hidden pt-80">
+                <section className="vd-hero relative overflow-hidden pt-40 md:pt-80">
                     <div
                         className="vd-hero-bg absolute inset-0 -z-10"
                         style={{

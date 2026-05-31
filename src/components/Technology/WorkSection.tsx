@@ -51,7 +51,7 @@ const WorkSection: React.FC = () => {
           {PROJECTS.map((p) => (
             <div
               key={p.num}
-              className="proj group grid grid-cols-[56px_1fr_1fr_auto] items-center gap-6 py-8 px-4 md:px-6 border-t border-gray-200 hover:bg-orange-50 transition-all duration-200 hover:pl-7 hover:pr-7 cursor-pointer"
+              className="proj group grid grid-cols-[56px_1fr] md:grid-cols-[56px_1fr_1fr_auto] items-center gap-6 py-6 px-4 md:px-6 border-t border-gray-200 hover:bg-orange-50 transition-all duration-200 md:hover:pl-7 md:hover:pr-7 cursor-pointer"
             >
               <div className="proj-num text-orange-500 font-medium">{p.num}</div>
 
@@ -80,8 +80,8 @@ const WorkSection: React.FC = () => {
           ))}
         </div>
 
-        <section className="stack mt-12">
-          <div className="section-label text-orange-500 uppercase tracking-widest text-4xl mb-4">Technology Stack</div>
+        <section className="stack mt-10">
+          <div className="section-label text-orange-500 uppercase tracking-widest text-lg md:text-4xl mb-4">Technology Stack</div>
           <div className="stack-tags flex flex-wrap gap-2">
             {[
               "SAP BTP",
@@ -97,7 +97,7 @@ const WorkSection: React.FC = () => {
               "Twilio",
               "SAP Mobile Services",
             ].map((t) => (
-              <span key={t} className="stack-tag inline-block text-xl text-gray-700 bg-gray-100 px-3 py-1 rounded-full">{t}</span>
+              <span key={t} className="stack-tag inline-block text-sm md:text-xl text-gray-700 bg-gray-100 px-3 py-1 rounded-full">{t}</span>
             ))}
           </div>
         </section>
@@ -105,9 +105,9 @@ const WorkSection: React.FC = () => {
         
       </div>
 
-      <div className="cta-strip py-16 w-full">
-        <div className="w-full px-6 flex items-center justify-between">
-          <div className="cta-strip-text font-serif text-3xl md:text-5xl text-black">Let's get your message<br />to the right audience.</div>
+      <div className="cta-strip py-12 w-full">
+        <div className="w-full px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="cta-strip-text font-serif text-2xl md:text-3xl lg:text-5xl text-black">Let's get your message<br />to the right audience.</div>
           <button onClick={handleContact} className="btn-dark bg-black text-white px-6 py-3 rounded-full">Plan a campaign →</button>
         </div>
       </div>
