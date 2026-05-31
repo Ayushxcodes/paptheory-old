@@ -2,7 +2,7 @@
 
 import ControlledMediaSection from '@/components/landing/ControlledMediaSection'
 import HeroSection from '@/components/landing/HeroSection'
-import BannerSection from '@/components/landing/BannerSection'
+import BannerSection from '@/components/newlanding/BannerSection'
 import OurApproachSection from '@/components/landing/OurApproachSection'
 import PhilosophySection from '@/components/landing/PhilosophySection'
 import SelectedWorkSection from '@/components/landing/SelectedWorkSection'
@@ -11,6 +11,9 @@ import VerticalsSection from '@/components/landing/VerticalSection'
 import WhoYouWorkWithSection from '@/components/landing/WhoWorkWithSection'
 import { AnimatePresence, motion } from 'motion/react'
 import React, { useState } from 'react'
+import AboutSection from '@/components/newlanding/AboutSection'
+import LineofWorkSection from '@/components/newlanding/LineofWorkSection'
+import TestimonialsSection from '@/components/newlanding/TestimonialsSection'
 
 const Homepage = () => {
   const [showAnimation, setShowAnimation] = useState(true)
@@ -57,12 +60,11 @@ const Homepage = () => {
           transition={{ duration: 0.5 }}
         >
           <BannerSection />
-          <WhoYouWorkWithSection />
-          <OurApproachSection />
-          <VerticalsSection />
+          <AboutSection />
+          <LineofWorkSection />
           <TickerSection />
-          <SelectedWorkSection />
-          <PhilosophySection />
+          <TestimonialsSection />
+          
         </motion.div>
       )}
     </AnimatePresence>
