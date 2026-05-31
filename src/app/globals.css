@@ -129,7 +129,7 @@ html {
 }
 
 /* BannerSection helpers */
-.banner-viewport { height: calc(100vh - var(--navbar-height, 80px)); position: relative; overflow: hidden }
+.banner-viewport { height: 100vh; box-sizing: border-box; position: relative; overflow: hidden }
 .banner-slide-bg { background-size: cover; background-position: center }
 .banner-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.6) 100%); }
 .segment-fill { transform-origin: left center }

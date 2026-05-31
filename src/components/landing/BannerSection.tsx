@@ -46,6 +46,7 @@ export default function BannerSection({ banners = defaultBanners, interval = 600
 	return (
 		<section
 			className="banner-viewport"
+			style={{ paddingTop: 'var(--navbar-height, 80px)' }}
 			onMouseEnter={() => {
 				hoverRef.current = true
 				setIsPlaying(false)
