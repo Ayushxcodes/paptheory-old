@@ -2,8 +2,8 @@
 import React from "react";
 
 const REELS = [
-  { id: "r1", caption: "Messaging that converts", src: "" },
-  { id: "r2", caption: "Brand personality that sticks", src: "" },
+  { id: "r1", caption: "Messaging that converts", src: "/vid1.mp4" },
+  { id: "r2", caption: "Brand personality that sticks", src: "/vid2.mp4" },
   { id: "r3", caption: "Built for Gen Z lifestyle", src: "" },
   { id: "r4", caption: "Organic shareability", src: "" },
 ];
