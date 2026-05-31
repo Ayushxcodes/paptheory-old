@@ -33,20 +33,20 @@ const HeroSection: React.FC = () => {
 				</div>
 			</section>
 
-			<div className="vd-stats grid grid-cols-1 md:grid-cols-4 border-t border-gray-700">
-				<div className="vd-stat p-8 border-r border-gray-700">
+			<div className="vd-stats grid grid-cols-2 md:grid-cols-4 border-t border-b border-gray-700">
+				<div className="vd-stat p-6 md:p-8 border-r border-b md:border-b-0 border-gray-700">
 					<span className="vd-stat-num text-3xl font-semibold text-orange-500 block">15+</span>
 					<span className="vd-stat-label text-sm text-gray-400 mt-2 block">Brand mandates</span>
 				</div>
-				<div className="vd-stat p-8 border-r border-gray-700">
+				<div className="vd-stat p-6 md:p-8 md:border-r border-b md:border-b-0 border-gray-700">
 					<span className="vd-stat-num text-3xl font-semibold text-orange-500 block">8</span>
 					<span className="vd-stat-label text-sm text-gray-400 mt-2 block">National clients</span>
 				</div>
-				<div className="vd-stat p-8 border-r border-gray-700">
+				<div className="vd-stat p-6 md:p-8 border-r border-gray-700">
 					<span className="vd-stat-num text-3xl font-semibold text-orange-500 block">Govt.</span>
 					<span className="vd-stat-label text-sm text-gray-400 mt-2 block">Sector experience</span>
 				</div>
-				<div className="vd-stat p-8">
+				<div className="vd-stat p-6 md:p-8">
 					<span className="vd-stat-num text-3xl font-semibold text-orange-500 block">UNICEF</span>
 					<span className="vd-stat-label text-sm text-gray-400 mt-2 block">Social-impact work</span>
 				</div>

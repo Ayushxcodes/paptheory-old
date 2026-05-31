@@ -1,30 +1,31 @@
 "use client";
 import React from "react";
 
-const REELS = [
-  { id: "r1", caption: "Messaging that converts", src: "/vid1.mp4" },
-  { id: "r2", caption: "Brand personality that sticks", src: "/vid2.mp4" },
-  { id: "r3", caption: "Built for Gen Z lifestyle", src: "" },
-  { id: "r4", caption: "Organic shareability", src: "" },
+const videoIds = [
+  "680100853f934d7b33b2d517",
+  "6985d218924a60df4bf0fda8",
+  "6985d218742559dc5a11a435",
+  "6985d2184db88a967f203e86",
+  "6985d218742559dc5a11a433",
+  "6985d218742559dc5a11a437",
+  "6985d218742559dc5a11a42d",
+  "6985cd64742559dc5a10fcf1",
+  "6904627faa9e79860d5356fa",
+  "6904627fa73e176902710649",
+  "6904627fa5b40b283e125f54",
+  "6904627fa73e176902710644",
+  "68a58031faf881d01d012b62",
+  "68a57fe681b867dff3334498",
+  "680104cd3f934d7b33b2f50e",
+  "680102a2fc3cb0b3238a7593",
+  "68010085fc3cb0b3238a62ee",
+  "680100853ab3a7b826bb539e",
+  "680100853f934d7b33b2d519",
+  "68010085fc3cb0b3238a62f6",
+  "680100853ab3a7b826bb539a",
 ];
 
 const SocialCornerSection: React.FC = () => {
-  const playReel = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = e.currentTarget as HTMLDivElement;
-    const video = el.querySelector("video") as HTMLVideoElement | null;
-    if (!video) return;
-    // toggle play/pause; keep muted
-    if (video.paused) {
-      video.currentTime = 0;
-      video.muted = true;
-      void video.play();
-      el.classList.add("playing");
-    } else {
-      video.pause();
-      el.classList.remove("playing");
-    }
-  };
-
   return (
     <section className="reel-section py-12 md:py-16 px-4 md:px-14" id="social-corner">
       <div className="section-label text-orange-500 uppercase tracking-widest text-sm mb-3">Social Corner</div>
@@ -34,25 +35,17 @@ const SocialCornerSection: React.FC = () => {
       </p>
 
       <div className="reel-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-        {REELS.map((r) => (
-          <div
-            key={r.id}
-            className="reel group relative aspect-[9/16] rounded-sm overflow-hidden border border-gray-800 bg-[radial-gradient(ellipse_at_center,rgba(232,80,10,0.12),transparent_40%),#0b0b0b]"
-            onClick={playReel}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playReel(e as any); } }}
-          >
-            <video muted loop playsInline className="absolute inset-0 w-full h-full object-cover" poster="">
-              {r.src && <source src={r.src} type="video/mp4" />}
-            </video>
-
-            <div className="reel-poster absolute inset-0 flex items-end p-6 pointer-events-none">
-              <span className="reel-cap text-sm text-gray-200">{r.caption}</span>
-            </div>
-
-            <div className="reel-play absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
-              <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-orange-500 flex items-center justify-center text-black text-lg transition-transform transform group-hover:scale-110">▶</div>
+        {videoIds.map((id, index) => (
+          <div key={id} className="group bg-white rounded-sm overflow-hidden border border-gray-800">
+            <div className="relative aspect-video bg-black">
+              <iframe
+                src={`https://play.gumlet.io/embed/${id}?autoplay=1&muted=1&loop=1&playsinline=1&controls=0`}
+                className="absolute inset-0 w-full h-full border-0"
+                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                allowFullScreen
+                loading="lazy"
+                title={`Work Video ${index + 1}`}
+              />
             </div>
           </div>
         ))}
