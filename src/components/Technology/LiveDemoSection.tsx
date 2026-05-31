@@ -112,7 +112,7 @@ const LiveDemoSection: React.FC = () => {
 
               {d.src ? (
                 <video
-                  ref={(el) => (videoRefs.current[i] = el)}
+                  ref={(el) => { videoRefs.current[i] = el; }}
                   className={`${playing[i] ? "absolute inset-0 w-full h-full object-cover" : "hidden"}`}
                   muted
                   loop
