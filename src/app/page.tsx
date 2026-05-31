@@ -2,6 +2,7 @@
 
 import ControlledMediaSection from '@/components/landing/ControlledMediaSection'
 import HeroSection from '@/components/landing/HeroSection'
+import BannerSection from '@/components/landing/BannerSection'
 import OurApproachSection from '@/components/landing/OurApproachSection'
 import PhilosophySection from '@/components/landing/PhilosophySection'
 import SelectedWorkSection from '@/components/landing/SelectedWorkSection'
@@ -55,7 +56,7 @@ const Homepage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <HeroSection />
+          <BannerSection />
           <WhoYouWorkWithSection />
           <OurApproachSection />
           <VerticalsSection />

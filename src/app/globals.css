@@ -127,3 +127,54 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* BannerSection helpers */
+.banner-viewport { height: calc(100vh - var(--navbar-height, 80px)); position: relative; overflow: hidden }
+.banner-slide-bg { background-size: cover; background-position: center }
+.banner-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.6) 100%); }
+.segment-fill { transform-origin: left center }
+
+/* BannerSection moved styles */
+.slides { position: absolute; inset: 0 }
+.slide { position: absolute; inset: 0; display: flex; align-items: center; color: #fff; opacity: 0; transition: opacity 600ms ease }
+.slide.active { opacity: 1; z-index: 2 }
+.container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 3 }
+.left { max-width: 640px }
+.tag { display: inline-block; background: rgba(255,255,255,0.08); padding: 6px 10px; border-radius: 4px; color: #cbd5e1; font-size: 13px; margin-bottom: 18px }
+.title { font-size: clamp(2.2rem,6vw,4.4rem); line-height: 1; margin: 0 0 12px 0; font-weight: 700 }
+.subtitle { color: rgba(255,255,255,0.9); max-width: 520px; margin-bottom: 20px }
+.cta { display: inline-flex; align-items: center; gap: 10px; background: #f2b33d; color: #111; padding: 12px 18px; border-radius: 6px; text-decoration: none; font-weight: 600 }
+
+@keyframes zoomIn { from { transform: scale(1) } to { transform: scale(1.06) } }
+.animate-zoom { animation: zoomIn 6s ease-in-out forwards }
+
+.controls { position: absolute; left: 0; right: 0; bottom: 28px; display: flex; align-items: center; justify-content: center; gap: 24px; z-index: 6 }
+.left-controls { position: absolute; left: 48px; display: flex; align-items: center; gap: 12px; color: #fff }
+.icon-btn { background: transparent; border: none; color: #fff; font-size: 16px; cursor: pointer }
+.index { font-size: 14px; opacity: 0.95 }
+
+.segments { display: flex; gap: 28px; align-items: center }
+.segment { width: 220px; height: 4px; background: rgba(255,255,255,0.12); border-radius: 2px; overflow: hidden; cursor: pointer }
+.segment .fill { width: 100%; height: 100%; background: linear-gradient(90deg,#f2b33d,#f7d89a); transform-origin: left center; transform: scaleX(0) }
+.segment.active .fill { animation-name: fill; animation-timing-function: linear; animation-fill-mode: forwards }
+
+@keyframes fill { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+
+.down-arrow { position: absolute; right: 48px; color: rgba(255,255,255,0.9) }
+
+.nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(255,255,255,0.06); border: none; width: 44px; height: 44px; border-radius: 999px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff }
+.nav.prev { left: 24px }
+.nav.next { right: 24px }
+
+@media (max-width: 900px) {
+  .segment { width: 120px }
+  .container { padding: 0 24px }
+  .left-controls { left: 24px }
+  .down-arrow { right: 24px }
+}
+
+@media (max-width: 600px) {
+  .title { font-size: 2rem }
+  .segments { gap: 12px }
+  .segment { width: 60px }
+}
