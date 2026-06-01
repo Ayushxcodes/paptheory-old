@@ -101,7 +101,7 @@ const WhatWeDeliverSection: React.FC = () => {
                 className="cap-body overflow-hidden transition-all duration-300"
                 style={{ maxHeight: isOpen ? `${heights[i] ?? 0}px` : "0px" }}
               >
-                <div ref={(el) => (innerRefs.current[i] = el)} className="cap-body-inner p-8 md:p-10 text-base md:text-lg text-gray-700">
+                <div ref={(el) => { innerRefs.current[i] = el; }} className="cap-body-inner p-8 md:p-10 text-base md:text-lg text-gray-700">
                   {s.desc}
                   {s.stack && (
                     <div className="cap-stack mt-3 flex flex-wrap gap-2">
