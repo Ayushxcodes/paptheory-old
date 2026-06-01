@@ -28,13 +28,24 @@ const TestimonialsSection: React.FC = () => {
 				</div>
 			</div>
 
+			<style>{`
+				.ornate-quote-svg{position:absolute;left:18px;top:10px;opacity:0.12}
+				.ornate-quote-text{font-family: Georgia, 'Times New Roman', serif; font-style:italic; font-size:1.05rem}
+				@media(min-width:768px){.ornate-quote-text{font-size:1.25rem}}
+				@media(min-width:1024px){.ornate-quote-text{font-size:1.45rem}}
+				.testi{transition:transform .32s cubic-bezier(.2,.9,.2,1),box-shadow .32s}
+				.testi:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(16,24,40,0.08)}
+			`}</style>
 			<div className="testi-grid grid gap-6 grid-cols-1 md:grid-cols-3">
 				{TESTIMONIALS.map((t, i) => (
-					<div key={i} className="testi bg-gray-900 border border-gray-800 rounded-md p-6 md:p-8 text-gray-50">
-						<div className="testi-quote italic text-lg md:text-xl leading-relaxed">{t.quote}</div>
-						<div className="border-t border-gray-800 mt-6 pt-5">
-							<div className="testi-name text-sm font-semibold text-gray-100">{t.name}</div>
-							<div className="testi-role text-xs text-gray-400 mt-1">{t.role}</div>
+					<div key={i} className="testi bg-white border border-gray-200 rounded-md p-6 md:p-8 text-gray-900 relative overflow-hidden">
+						<svg className="ornate-quote-svg w-16 h-16 text-orange-500" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+							<path d="M22 18c-6 0-10 5-10 11 0 6 4 11 10 11 3 0 6-1 8-3 1-1 2-3 2-5 0-3-2-5-5-5-1 0-2 0-3 1-1 0-1 1-1 2 0 1 0 1 0 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+						</svg>
+						<blockquote className="testi-quote ornate-quote-text leading-relaxed pl-2">“{t.quote}”</blockquote>
+						<div className="border-t border-gray-100 mt-6 pt-5">
+							<div className="testi-name text-sm font-semibold text-gray-900">{t.name}</div>
+							<div className="testi-role text-xs text-gray-500 mt-1">{t.role}</div>
 						</div>
 					</div>
 				))}
