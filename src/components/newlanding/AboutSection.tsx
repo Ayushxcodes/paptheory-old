@@ -1,55 +1,295 @@
 import React from "react";
+import { motion, Variants } from "motion/react";
+
+const leftColumnVariants: Variants = {
+	hidden: {},
+	visible: {
+		transition: {
+			staggerChildren: 0.12,
+		},
+	},
+};
+
+const textItemVariants: Variants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.6,
+			ease: "easeOut" as const,
+		},
+	},
+};
+
+const diagramVariants: Variants = {
+	hidden: { opacity: 0, scale: 0.85 },
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			duration: 1.2,
+			type: "spring" as const,
+			stiffness: 60,
+			damping: 15,
+		},
+	},
+};
 
 const AboutSection: React.FC = () => {
 	return (
-		<section
-			id="about"
-			className="section about bg-white text-gray-900 py-20 px-6 md:px-12 flex gap-12 items-start flex-wrap"
-		>
-			<div className="w-full md:w-[520px]">
-				<div className="section-label text-orange-600 uppercase tracking-widest text-sm mb-4">The Studio</div>
-				<h2 className="about-heading font-serif text-4xl md:text-6xl leading-[1.02] m-0 font-normal">
-					Four disciplines.
-					<br />
-					One <em className="italic text-orange-600">creative</em>
-					<br />
-					intelligence.
-				</h2>
-			</div>
+		<section className="section studio py-20 px-6 md:px-14 bg-white text-gray-900 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" id="about">
+			<style>{`
+				.os-diagram {
+					position: relative;
+					width: 560px;
+					height: 560px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+				@media (max-width: 1024px) {
+					.os-diagram {
+						width: 480px;
+						height: 480px;
+					}
+				}
+				@media (max-width: 500px) {
+					.os-diagram {
+						width: 380px;
+						height: 380px;
+					}
+				}
+				@media (max-width: 390px) {
+					.os-diagram {
+						width: 320px;
+						height: 320px;
+					}
+				}
+				.os-orbit-wrapper {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					left: 0;
+					top: 0;
+					animation: rotateOrbit 35s linear infinite;
+				}
+				.os-spokes {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					left: 0;
+					top: 0;
+				}
+				.os-ring {
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					border-radius: 50%;
+				}
+				.os-ring.r1 {
+					width: 39.1%;
+					height: 39.1%;
+					border: 1px dashed rgba(234, 88, 12, 0.18);
+				}
+				.os-ring.r2 {
+					width: 74.8%;
+					height: 74.8%;
+					border: 1px solid rgba(234, 88, 12, 0.12);
+				}
+				.os-core {
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					width: 110px;
+					height: 110px;
+					background: #ffffff;
+					border: 2px solid #ea580c;
+					border-radius: 50%;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					box-shadow: 0 10px 30px rgba(234, 88, 12, 0.16);
+					z-index: 20;
+					transition: transform 0.3s ease, box-shadow 0.3s ease;
+				}
+				.os-core:hover {
+					transform: translate(-50%, -50%) scale(1.06);
+					box-shadow: 0 12px 35px rgba(234, 88, 12, 0.25);
+				}
+				.os-core b {
+					font-size: 1.2rem;
+					color: #111827;
+					font-weight: 700;
+					letter-spacing: 0.05em;
+				}
+				.os-core small {
+					font-size: 0.7rem;
+					color: #ea580c;
+					text-transform: uppercase;
+					font-weight: 600;
+					margin-top: 2px;
+					letter-spacing: 0.02em;
+				}
+				.os-node {
+					position: absolute;
+					width: 96px;
+					height: 96px;
+					background: #ffffff;
+					border: 1px solid rgba(234, 88, 12, 0.22);
+					border-radius: 50%;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+					z-index: 10;
+					animation: counterRotate 35s linear infinite;
+					transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+					cursor: pointer;
+				}
+				.os-node:hover {
+					border-color: #ea580c;
+					background: #fffaf7;
+					box-shadow: 0 8px 24px rgba(234, 88, 12, 0.18);
+				}
+				.os-node b {
+					font-size: 0.9rem;
+					color: #111827;
+					font-weight: 600;
+				}
+				.os-node small {
+					font-size: 0.68rem;
+					color: #6b7280;
+					margin-top: 1px;
+				}
+				.os-node.n1 {
+					left: 50%;
+					top: 12.6%;
+				}
+				.os-node.n2 {
+					left: 87.4%;
+					top: 50%;
+				}
+				.os-node.n3 {
+					left: 50%;
+					top: 87.4%;
+				}
+				.os-node.n4 {
+					left: 12.6%;
+					top: 50%;
+				}
+				@media (max-width: 500px) {
+					.os-node {
+						width: 80px;
+						height: 80px;
+					}
+					.os-node b {
+						font-size: 0.78rem;
+					}
+					.os-node small {
+						font-size: 0.58rem;
+					}
+					.os-core {
+						width: 90px;
+						height: 90px;
+					}
+					.os-core b {
+						font-size: 1rem;
+					}
+					.os-core small {
+						font-size: 0.58rem;
+					}
+				}
+				
+				@keyframes rotateOrbit {
+					from { transform: rotate(0deg); }
+					to { transform: rotate(360deg); }
+				}
+				@keyframes counterRotate {
+					from { transform: translate(-50%, -50%) rotate(0deg); }
+					to { transform: translate(-50%, -50%) rotate(-360deg); }
+				}
+			`}</style>
 
-			<div className="flex-1 min-w-[280px]">
-				<p className="about-lead text-lg font-medium mb-4">
-					Paper Theory Networks exists because the line between a brand&apos;s story and the systems that deliver it has disappeared.
-				</p>
+			{/* Left Column - Text Content */}
+			<motion.div
+				variants={leftColumnVariants}
+				initial="hidden"
+				whileInView="visible"
+				viewport={{ once: true, margin: "-100px" }}
+				className="max-w-xl"
+			>
+				<motion.div variants={textItemVariants} className="section-label text-orange-600 uppercase tracking-widest text-sm mb-4 font-semibold">The Studio</motion.div>
+				<motion.h2 variants={textItemVariants} className="about-heading font-serif text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-gray-900">
+					Where the <em className="italic text-orange-500 font-serif">idea</em><br />
+					and the <em className="italic text-orange-500 font-serif">system</em><br />
+					are built together.
+				</motion.h2>
+				<motion.p variants={textItemVariants} className="studio-lead text-lg md:text-xl text-gray-800 font-medium mt-8 leading-relaxed">
+					A brand&apos;s story and the technology that delivers it are no longer separate jobs. <em className="italic text-orange-500">We do both.</em>
+				</motion.p>
+				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
+					A campaign is also a data problem. A product launch is also an engineering one. Paper Theory Networks is built so the people who shape what a brand says also build how it reaches, measures and runs — communications, creative, media and technology as one team, not four vendors.
+				</motion.p>
+				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
+					It means fewer hand-offs, a single standard of craft, and ideas that hold their shape from first thought to live system in production. It&apos;s how we work with national brands and global enterprise clients alike.
+				</motion.p>
 
-				<p className="about-body text-gray-600 mb-8">
-					A campaign is also a data problem. A product launch is also an engineering one. We built a studio where the people who shape what a brand says also build how it reaches, measures and serves its audience — communications, creative, media and technology, working as one team rather than four vendors. The result is fewer hand-offs, a single standard of craft, and ideas that hold their shape from first thought to live system. It's how we've worked with Maruti Suzuki, ICICI Bank, Mahindra and global enterprise clients alike.
-				</p>
+				
+			</motion.div>
 
-				<div className="border-t border-gray-200 pt-8">
-					<div className="about-meta flex gap-12 flex-wrap items-end">
-						<div className="meta-item min-w-[120px]">
-							<div className="meta-num text-3xl md:text-4xl font-extrabold text-gray-900">12+</div>
-							<div className="meta-label text-sm text-gray-500 mt-1">Years of practice</div>
+			{/* Right Column - Revolving Diagram */}
+			<motion.div
+				variants={diagramVariants}
+				initial="hidden"
+				whileInView="visible"
+				viewport={{ once: true, margin: "-100px" }}
+				className="flex items-center justify-center"
+			>
+				<div className="os-diagram">
+					{/* Core Center (Static) */}
+					<div className="os-core">
+						<b>PTN</b>
+						<small>One Team</small>
+					</div>
+
+					{/* Revolving Orbit Wrapper */}
+					<div className="os-orbit-wrapper">
+						<svg className="os-spokes" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet" aria-hidden>
+							<line x1="230" y1="230" x2="230" y2="58" stroke="rgba(232,80,10,0.25)" strokeWidth="1" />
+							<line x1="230" y1="230" x2="402" y2="230" stroke="rgba(232,80,10,0.25)" strokeWidth="1" />
+							<line x1="230" y1="230" x2="230" y2="402" stroke="rgba(232,80,10,0.25)" strokeWidth="1" />
+							<line x1="230" y1="230" x2="58" y2="230" stroke="rgba(232,80,10,0.25)" strokeWidth="1" />
+						</svg>
+						
+						{/* Concentric rings */}
+						<div className="os-ring r2" />
+						<div className="os-ring r1" />
+
+						{/* Nodes with counter-rotation to stay upright */}
+						<div className="os-node n1">
+							<b>Comms</b>
+							<small>Reputation</small>
 						</div>
-
-						<div className="meta-item min-w-[120px]">
-							<div className="meta-num text-3xl md:text-4xl font-extrabold text-gray-900">45+</div>
-							<div className="meta-label text-sm text-gray-500 mt-1">Projects delivered</div>
+						<div className="os-node n2">
+							<b>Creative</b>
+							<small>Ideas</small>
 						</div>
-
-						<div className="meta-item min-w-[120px]">
-							<div className="meta-num text-3xl md:text-4xl font-extrabold text-gray-900">4</div>
-							<div className="meta-label text-sm text-gray-500 mt-1">Global regions</div>
+						<div className="os-node n3">
+							<b>Media</b>
+							<small>Reach</small>
 						</div>
-
-						<div className="meta-item min-w-[120px]">
-							<div className="meta-num text-3xl md:text-4xl font-extrabold text-gray-900">20+</div>
-							<div className="meta-label text-sm text-gray-500 mt-1">Active clients</div>
+						<div className="os-node n4">
+							<b>Tech</b>
+							<small>Systems</small>
 						</div>
 					</div>
 				</div>
-			</div>
+			</motion.div>
 		</section>
 	);
 };

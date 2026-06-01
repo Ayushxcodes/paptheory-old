@@ -28,8 +28,8 @@ const WorkSection: React.FC = () => {
           'A live enterprise platform covering blast scheduling, forecasting, delivery automation, inventory management and customer portal — deployed across four global regions. Built on SAP BTP with AI assistance and mobile offline capability for remote field teams.',
         region: 'Australia · North America · EMEA · Asia',
         tags: ['SAP BTP', 'SAP S/4 HANA', 'Mining', 'Clean Core', 'AI', 'Mobile', 'Web App'],
-        metric: '—',
-        metricLabel: ''
+        metric: '4',
+        metricLabel: 'regions, live in production'
       },
       {
         cat: 'IT · Enterprise HR & Workforce Management',
@@ -68,8 +68,8 @@ const WorkSection: React.FC = () => {
           'Scroll-stopping content strategies and viral brand campaigns that built real cultural traction with Gen Z audiences across digital platforms.',
         region: 'India',
         tags: ['Brand', 'Gen Z', 'Content'],
-        metric: '',
-        metricLabel: ''
+        metric: 'Multi+',
+        metricLabel: 'Brands'
       }
     ],
     []
