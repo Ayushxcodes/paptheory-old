@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Play, Pause } from 'lucide-react'
 
 type Banner = {
 	id: number
@@ -12,10 +13,10 @@ type Banner = {
 }
 
 const defaultBanners: Banner[] = [
-	{ id: 1, tag: 'Tata Stories', title: 'Ten Years of Jaguar\nTCS Racing', subtitle: 'The race-to-innovate strategy behind Formula E\'s most successful team', cta: { label: 'Story and pics' }, image: '' },
-	{ id: 2, tag: 'Feature', title: 'Creative Motion', subtitle: 'Interactions that matter', cta: { label: 'Explore' }, bg: 'linear-gradient(120deg,#a18cd1,#fbc2eb)' },
-	{ id: 3, tag: 'Project', title: 'Digital Craft', subtitle: 'Pixel-perfect delivery', cta: { label: 'See work' }, bg: 'linear-gradient(120deg,#84fab0,#8fd3f4)' },
-	{ id: 4, tag: 'Insight', title: 'Human Stories', subtitle: 'Work that connects', cta: { label: 'Read' }, bg: 'linear-gradient(120deg,#fccb90,#d57eeb)' },
+	{ id: 1, tag: 'Discipline 1', title: 'Communications', subtitle: 'Strategy-first communications that build reputation, protect brand equity, and shift how audiences think — at national and enterprise scale.', cta: { label: 'Explore Communications', href: '/communications' }, image: '/banner1.png' },
+	{ id: 2, tag: 'Discipline 2', title: 'Creative', subtitle: 'We engineer perception in the age of visibility. Idea-led creative across campaigns, identity and content — work built to be remembered, not just noticed.', cta: { label: 'Explore Creative', href: '/creative' }, image: '/banner2.png' },
+	{ id: 3, tag: 'Discipline 3', title: 'Media', subtitle: 'Data-driven media planning and buying that gets the right creative in front of the right audience — broadcast, digital and OOH, with analytics to close the loop.', cta: { label: 'Explore Media', href: '/media' }, image: '/banner3.png' },
+	{ id: 4, tag: 'Discipline 4', title: 'Technology', subtitle: 'Enterprise-grade consulting and product engineering. We have built field-operations platforms for global companies across 4 regions and we bring that rigour to every engagement', cta: { label: 'Explore Technology', href: '/technology' }, image: '/banner4.png' },
 ]
 
 export default function BannerSection({ banners = defaultBanners, interval = 6000 }: { banners?: Banner[]; interval?: number }) {
@@ -78,9 +79,13 @@ export default function BannerSection({ banners = defaultBanners, interval = 600
 			<div className="controls">
 				<div className="left-controls">
 					<button className="icon-btn" onClick={() => setIsPlaying((s) => !s)} aria-label={isPlaying ? 'Pause' : 'Play'}>
-						{isPlaying ? '||' : '▶'}
+						{isPlaying ? <Pause size={14} className="icon" fill="currentColor" /> : <Play size={14} className="icon translate-x-[0.5px]" fill="currentColor" />}
 					</button>
-					<div className="index">{index + 1} / {banners.length}</div>
+					<div className="index">
+						<span className="current">{String(index + 1).padStart(2, '0')}</span>
+						<span className="divider">/</span>
+						<span className="total">{String(banners.length).padStart(2, '0')}</span>
+					</div>
 				</div>
 
 				<div className="segments">
