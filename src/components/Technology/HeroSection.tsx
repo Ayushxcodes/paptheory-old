@@ -34,7 +34,7 @@ const HeroSection: React.FC = () => {
                     <div className="vd-content relative z-10 px-6 md:px-14 pt-32 pb-8">
                         <div className="vd-eyebrow text-xs tracking-widest uppercase text-orange-500 mb-4">Discipline 04</div>
                         <h1 className="vd-title font-serif text-4xl md:text-6xl lg:text-[92px] font-normal leading-tight text-white max-w-4xl">Technology</h1>
-                        <p className="vd-tagline text-base md:text-lg text-gray-300 max-w-3xl mt-6">Enterprise-grade consulting and product engineering. We've built field-operations platforms for global companies across 4 regions — and we bring that rigour to every engagement.</p>
+                        <p className="vd-tagline text-base md:text-lg text-gray-300 max-w-3xl mt-6">Enterprise-grade consulting and product engineering. We&apos;ve built field-operations platforms for global companies across 4 regions — and we bring that rigour to every engagement.</p>
                     </div>
                 </section>
 

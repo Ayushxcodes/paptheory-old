@@ -35,11 +35,6 @@ const LiveDemoSection: React.FC = () => {
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const [activeDemo, setActiveDemo] = useState<typeof DEMOS[number] | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
@@ -151,7 +146,7 @@ const LiveDemoSection: React.FC = () => {
       </div>
 
       {/* Modal Lightbox */}
-      {activeDemo && mounted && createPortal(
+      {activeDemo && typeof window !== "undefined" && createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
           onClick={() => setActiveDemo(null)}

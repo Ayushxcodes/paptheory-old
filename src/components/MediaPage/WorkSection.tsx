@@ -74,7 +74,7 @@ const WorkSection: React.FC = () => {
 
       <div className="cta-strip py-12 w-full">
         <div className="w-full px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="cta-strip-text font-serif text-2xl md:text-3xl lg:text-5xl text-black">Let's get your message<br />to the right audience.</div>
+          <div className="cta-strip-text font-serif text-2xl md:text-3xl lg:text-5xl text-black">Let&apos;s get your message<br />to the right audience.</div>
           <button onClick={handleContact} className="btn-dark bg-black text-white px-6 py-3 rounded-full">Plan a campaign →</button>
         </div>
       </div>
