@@ -8,8 +8,15 @@ const HeroSection: React.FC = () => {
                     <div
                         className="vd-hero-bg absolute inset-0 -z-10"
                         style={{
-                            background:
-                                "radial-gradient(ellipse 70% 60% at 70% 40%, rgba(232,80,10,0.13), transparent 60%), linear-gradient(165deg,#0e0e0e,#070707)",
+                            backgroundImage: "url('/banner2.png')",
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                        }}
+                    />
+                    <div
+                        className="absolute inset-0 -z-10"
+                        style={{
+                            background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 100%)",
                         }}
                     />
 
