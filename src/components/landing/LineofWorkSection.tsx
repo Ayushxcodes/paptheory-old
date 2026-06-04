@@ -34,7 +34,7 @@ const ITEMS: LineItem[] = [
 		id: "technology",
 		index: "04",
 		name: "Technology",
-		desc: "Enterprise-grade consulting and product engineering — SAP BTP, AI, cloud and full-stack. With live demos across healthcare, supply chain, mining and more.",
+		desc: "Enterprise-grade consulting and product engineering — SAP BTP, AI, cloud and full-stack. With live demos for CareFlow and Ayurveda Inventory.",
 		services: ["AI & Automation", "ERP", "Cloud", "Product Engineering"],
 	},
 ];

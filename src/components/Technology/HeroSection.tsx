@@ -44,7 +44,7 @@ const HeroSection: React.FC = () => {
                         <span className="vd-stat-label text-sm text-gray-400 mt-2 block">Global regions</span>
                     </div>
                     <div className="vd-stat p-6 md:p-8 border-r border-gray-800">
-                        <span className="vd-stat-num text-3xl font-semibold text-orange-500 block">5</span>
+                        <span className="vd-stat-num text-3xl font-semibold text-orange-500 block">2</span>
                         <span className="vd-stat-label text-sm text-gray-400 mt-2 block">Live demo platforms</span>
                     </div>
                     <div className="vd-stat p-6 md:p-8">

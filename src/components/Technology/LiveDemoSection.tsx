@@ -1,45 +1,22 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 const DEMOS = [
   {
-    badge: "Supply Chain",
-    title: "Field Operations Platform",
-    desc: "Scheduling, inventory, delivery automation and AI forecasting for a global industrial company across 4 regions.",
-    posterStyle: "radial-gradient(ellipse at 50% 40%, rgba(232,80,10,0.28), transparent 70%), #0c0c0c",
-    src: "",
-    action: "play",
-  },
-  {
-    badge: "Mining",
-    title: "Field Operations Intelligence — Mining",
-    desc: "Operations scheduling, real-time inventory and offline-capable mobile capture for remote sites.",
-    posterStyle: "radial-gradient(ellipse at 50% 40%, rgba(232,80,10,0.26), transparent 70%), #0c0c0c",
-    src: "",
-    action: "play",
-  },
-  {
-    badge: "Healthcare",
-    title: "Healthcare Portal",
+    badge: "CareFlow",
+    title: "CareFlow Healthcare Portal",
     desc: "Appointment and follow-up system with AI speech-to-text. MVP demoed to a US clinic.",
-    posterStyle: "radial-gradient(ellipse at 50% 40%, rgba(232,80,10,0.24), transparent 70%), #0c0c0c",
-    src: "",
+    posterStyle: "radial-gradient(ellipse at 50% 40%, rgba(232,80,10,0.24), transparent 70%), #ffff",
+    src: "/cut_careflow.mp4",
     action: "play",
   },
   {
     badge: "Ayurveda · Inventory",
     title: "Hospital Inventory Management",
     desc: "CAPEX/OPEX inventory portal with AI for an Ayurvedic hospital. MVP ready, in discussion.",
-    posterStyle: "radial-gradient(ellipse at 50% 40%, rgba(232,80,10,0.22), transparent 70%), #0c0c0c",
-    src: "",
-    action: "play",
-  },
-  {
-    badge: "Vet · AI",
-    title: "Pet / Vet Healthcare AI Automation",
-    desc: "Healthcare portal adapted for veterinary clinics with AI automation. Nearly demo-ready.",
-    posterStyle: "radial-gradient(ellipse at 50% 40%, rgba(232,80,10,0.25), transparent 70%), #0c0c0c",
-    src: "",
+    posterStyle: "radial-gradient(ellipse at 50% 40%, rgba(232,80,10,0.22), transparent 70%), #ffff",
+    src: "/ayurved_cut.mp4",
     action: "play",
   },
   {
@@ -54,20 +31,37 @@ const DEMOS = [
 
 const LiveDemoSection: React.FC = () => {
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
-  const [playing, setPlaying] = useState<boolean[]>(DEMOS.map(() => false));
+  const [activeDemo, setActiveDemo] = useState<typeof DEMOS[number] | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
 
-  const handlePlay = (index: number) => {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredIndex(index);
     const v = videoRefs.current[index];
-    if (!v) return;
-    const next = [...playing];
-    if (!next[index]) {
+    if (v) {
       v.play().catch(() => {});
-      next[index] = true;
-    } else {
-      v.pause();
-      next[index] = false;
     }
-    setPlaying(next);
+  };
+
+  const handleMouseLeave = (index: number) => {
+    setHoveredIndex(null);
+    const v = videoRefs.current[index];
+    if (v) {
+      v.pause();
+      v.currentTime = 0;
+    }
+  };
+
+  const handleClick = (d: typeof DEMOS[number]) => {
+    if (d.action === "contact") {
+      handleContact();
+    } else if (d.src) {
+      setActiveDemo(d);
+    }
   };
 
   const handleContact = () => {
@@ -75,6 +69,22 @@ const LiveDemoSection: React.FC = () => {
     if (typeof w.goContact === "function") w.goContact();
     else window.location.href = "/contact";
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveDemo(null);
+      }
+    };
+    if (activeDemo) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [activeDemo]);
 
   return (
     <section className="demos section py-12 md:py-16 px-4 md:px-14" id="live-demos">
@@ -86,50 +96,110 @@ const LiveDemoSection: React.FC = () => {
         {DEMOS.map((d, i) => (
           <div
             key={i}
-            className={`demo group bg-[#070707] border border-gray-800 overflow-hidden rounded-sm cursor-pointer transform transition-all duration-300 md:hover:scale-[1.03] md:hover:-translate-y-2 md:hover:shadow-2xl md:hover:border-orange-600`}
-            onClick={() => (d.action === "contact" ? handleContact() : handlePlay(i))}
+            className={`demo group bg-white border border-gray-200 overflow-hidden rounded-sm cursor-pointer transform transition-all duration-300 md:hover:scale-[1.03] md:hover:-translate-y-2 md:hover:shadow-2xl md:hover:border-orange-600`}
+            onClick={() => handleClick(d)}
+            onMouseEnter={() => d.src && handleMouseEnter(i)}
+            onMouseLeave={() => d.src && handleMouseLeave(i)}
             role={d.action === "contact" ? "link" : "button"}
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") (d.action === "contact" ? handleContact() : handlePlay(i));
+              if (e.key === "Enter" || e.key === " ") handleClick(d);
             }}
           >
             <div className="demo-thumb relative h-56 sm:h-64 md:h-56 lg:h-72">
               {d.badge && (
-                <span className="demo-badge absolute top-3 left-3 text-xs text-orange-500 uppercase tracking-widest bg-black/40 px-3 py-1 rounded">{d.badge}</span>
+                <span className="demo-badge absolute top-3 left-3 text-xs text-orange-500 uppercase tracking-widest bg-black/60 px-3 py-1 rounded">{d.badge}</span>
               )}
 
-              <div
-                className={`demo-poster absolute inset-0 flex items-center justify-center transition-transform duration-500 transform ${
-                  playing[i] ? "scale-100 opacity-0" : "group-hover:scale-105"
-                }`}
-                style={{ background: d.posterStyle }}
-              >
-                <div className={`demo-play w-10 h-10 rounded-full flex items-center justify-center text-black bg-orange-500 transition-transform duration-300 transform group-hover:scale-110 ${
-                  playing[i] ? "opacity-0 scale-90" : ""
-                }`}>{d.action === "contact" ? "+" : "▶"}</div>
-              </div>
-
+              {/* If a video source exists, render the video always and show a play overlay. */}
               {d.src ? (
-                <video
-                  ref={(el) => { videoRefs.current[i] = el; }}
-                  className={`${playing[i] ? "absolute inset-0 w-full h-full object-cover" : "hidden"}`}
-                  muted
-                  loop
-                  playsInline
+                <>
+                  <video
+                    ref={(el) => { videoRefs.current[i] = el; }}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hoveredIndex === i ? "opacity-100" : "opacity-60"}`}
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    src={d.src || ""}
+                  />
+
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className={`demo-play w-10 h-10 rounded-full flex items-center justify-center text-black bg-orange-500 transition-transform duration-300 transform ${hoveredIndex === i ? "opacity-0 scale-90" : "group-hover:scale-110"}`}>
+                      {d.action === "contact" ? "+" : "▶"}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div
+                  className="demo-poster absolute inset-0 flex items-center justify-center transition-transform duration-500 transform group-hover:scale-105"
+                  style={{ background: d.posterStyle }}
                 >
-                  <source src={d.src || ""} type="video/mp4" />
-                </video>
-              ) : null}
+                  <div className="demo-play w-10 h-10 rounded-full flex items-center justify-center text-black bg-orange-500 transition-transform duration-300 transform group-hover:scale-110">
+                    {d.action === "contact" ? "+" : "▶"}
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="demo-info p-4 bg-[#070707] transition-transform duration-300 group-hover:-translate-y-2 group-hover:bg-[#0b0b0b]">
-              <div className="demo-title font-semibold text-sm text-white">{d.title}</div>
-              <div className="demo-desc text-xs text-gray-400 mt-2">{d.desc}</div>
+            <div className="demo-info p-4 bg-white transition-transform duration-300 group-hover:-translate-y-2 group-hover:bg-gray-50/80">
+              <div className="demo-title font-semibold text-sm text-gray-900">{d.title}</div>
+              <div className="demo-desc text-xs text-gray-600 mt-2">{d.desc}</div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Modal Lightbox */}
+      {activeDemo && mounted && createPortal(
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
+          onClick={() => setActiveDemo(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="relative w-full max-w-4xl bg-white border border-gray-200 rounded-lg overflow-hidden shadow-2xl flex flex-col transform transition-all duration-300 scale-100"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setActiveDemo(null)}
+              className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-orange-600 text-gray-800 hover:text-white rounded-full p-2 transition-colors focus:outline-none cursor-pointer shadow-sm border border-gray-200"
+              aria-label="Close modal"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Video Container */}
+            <div className="relative w-full aspect-video bg-black flex items-center justify-center">
+              <video
+                src={activeDemo.src || ""}
+                autoPlay
+                controls
+                className="w-full h-full object-contain"
+                playsInline
+              />
+            </div>
+
+            {/* Platform Details */}
+            <div className="p-6 md:p-8 bg-white">
+              <div className="flex items-center gap-3 mb-2">
+                {activeDemo.badge && (
+                  <span className="text-xs text-orange-600 uppercase tracking-widest bg-orange-500/10 px-3 py-1 rounded font-medium">
+                    {activeDemo.badge}
+                  </span>
+                )}
+              </div>
+              <h3 className="text-xl md:text-2xl font-serif text-gray-900">{activeDemo.title}</h3>
+              <p className="text-sm md:text-base text-gray-600 mt-2 leading-relaxed">{activeDemo.desc}</p>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 };
