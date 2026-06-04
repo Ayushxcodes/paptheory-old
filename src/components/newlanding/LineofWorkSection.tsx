@@ -81,16 +81,7 @@ const LineofWorkSection: React.FC<Props> = ({ onSelect }) => {
 
 	const handleClick = (id: string) => {
 		if (onSelect) return onSelect(id);
-		try {
-			router.push(`/${id}`);
-			return;
-		} catch (e) {
-			// ignore and fallback to global handler
-		}
-		// fallback to global function if present (from the reference HTML)
-		const w = window as any;
-		if (typeof w.showPage === "function") w.showPage(id);
-		else window.location.assign(`/${id}`);
+		router.push(`/${id}`);
 	};
 
 	return (

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 const HeroSection: React.FC = () => {
 	return (
@@ -22,16 +23,12 @@ const HeroSection: React.FC = () => {
 
 				<div className="vd-num hidden lg:block absolute right-6 bottom-0 text-[220px] leading-none font-serif text-[rgba(232,80,10,0.06)] pointer-events-none">01</div>
 
-				<a
+				<Link
+					href="/"
 					className="vd-back inline-flex items-center text-sm text-gray-400 absolute top-6 left-6 hover:text-white cursor-pointer"
-					onClick={() => {
-						const w = window as any;
-						if (typeof w.showPage === "function") w.showPage("home");
-						else window.location.href = "/";
-					}}
 				>
 					← All disciplines
-				</a>
+				</Link>
 
 				<div className="vd-content relative z-10 px-6 md:px-14 pt-32 pb-8">
 					<div className="vd-eyebrow text-xs tracking-widest uppercase text-orange-500 mb-4">Discipline 01</div>

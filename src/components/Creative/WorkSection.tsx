@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const PROJECTS = [
   {
@@ -23,10 +24,10 @@ const PROJECTS = [
 ];
 
 const WorkSection: React.FC = () => {
+  const router = useRouter();
+
   const handleContact = () => {
-    const w = window as any;
-    if (typeof w.goContact === "function") w.goContact();
-    else window.location.href = "/contact";
+    router.push("/contact");
   };
 
   return (

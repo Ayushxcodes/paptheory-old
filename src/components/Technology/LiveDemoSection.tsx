@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useRouter } from "next/navigation";
 
 const DEMOS = [
   {
@@ -30,6 +31,7 @@ const DEMOS = [
 ];
 
 const LiveDemoSection: React.FC = () => {
+  const router = useRouter();
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const [activeDemo, setActiveDemo] = useState<typeof DEMOS[number] | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -65,9 +67,7 @@ const LiveDemoSection: React.FC = () => {
   };
 
   const handleContact = () => {
-    const w = window as any;
-    if (typeof w.goContact === "function") w.goContact();
-    else window.location.href = "/contact";
+    router.push("/contact");
   };
 
   useEffect(() => {

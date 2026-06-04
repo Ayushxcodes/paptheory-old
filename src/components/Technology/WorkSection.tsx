@@ -1,11 +1,12 @@
 "use client";
 import React, { useMemo, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const WorkSection: React.FC = () => {
+  const router = useRouter();
+
   const handleContact = () => {
-    const w = window as any;
-    if (typeof w.goContact === "function") w.goContact();
-    else window.location.href = "/contact";
+    router.push("/contact");
   };
 
   const works = useMemo(
