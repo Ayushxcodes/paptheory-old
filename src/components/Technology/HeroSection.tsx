@@ -7,14 +7,15 @@ const HeroSection: React.FC = () => {
         <div className="page" id="page-technology">
             <section className="vd-hero relative overflow-hidden pt-40 md:pt-80">
 
-                    <div
-                        className="vd-hero-bg absolute inset-0 -z-10"
-                        style={{
-                            backgroundImage: "url('/banner4.png')",
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                        }}
-                    />
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="vd-hero-bg absolute inset-0 -z-10 w-full h-full object-cover"
+                    >
+                        <source src="/ayurved_cut.mp4" type="video/mp4" />
+                    </video>
                     <div
                         className="absolute inset-0 -z-10"
                         style={{
@@ -32,9 +33,10 @@ const HeroSection: React.FC = () => {
                     </Link>
 
                     <div className="vd-content relative z-10 px-6 md:px-14 pt-32 pb-8">
-                        <div className="vd-eyebrow text-xs tracking-widest uppercase text-orange-500 mb-4">Discipline 04</div>
-                        <h1 className="vd-title font-serif text-4xl md:text-6xl lg:text-[92px] font-normal leading-tight text-white max-w-4xl">Technology</h1>
-                        <p className="vd-tagline text-base md:text-lg text-gray-300 max-w-3xl mt-6">Enterprise-grade consulting and product engineering. We&apos;ve built field-operations platforms for global companies across 4 regions — and we bring that rigour to every engagement.</p>
+                        <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 px-6 py-2 md:px-10 md:py-4 rounded-sm shadow-2xl mb-6">
+                            <h1 className="vd-title font-serif text-4xl md:text-6xl lg:text-[92px] font-normal leading-tight text-orange-500">Technology</h1>
+                        </div>
+                        <p className="vd-tagline text-base md:text-lg text-orange-500 max-w-3xl mt-6">Enterprise-grade consulting and product engineering. We&apos;ve built field-operations platforms for global companies across 4 regions — and we bring that rigour to every engagement.</p>
                     </div>
                 </section>
 

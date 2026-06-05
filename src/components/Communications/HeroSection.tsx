@@ -2,18 +2,21 @@
 import React from "react";
 import Link from "next/link";
 
+const videos = [
+	"6904627fa5b40b283e125f54",
+];
+
 const HeroSection: React.FC = () => {
 	return (
 		<div className="page" id="page-communications">
 			<section className="vd-hero relative overflow-hidden pt-40 md:pt-80">
-				<div
-					className="vd-hero-bg absolute inset-0 -z-10"
-					style={{
-						backgroundImage: "url('/banner1.png')",
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-					}}
-				/>
+				<div className="vd-hero-bg absolute inset-0 -z-10 overflow-hidden">
+					<iframe
+						src={`https://play.gumlet.io/embed/${videos[0]}?playsinline=1&autoplay=1&mute=1&loop=1&background=1`}
+						className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-full min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
+						allow="autoplay; fullscreen"
+					/>
+				</div>
 				<div
 					className="absolute inset-0 -z-10"
 					style={{
@@ -30,10 +33,11 @@ const HeroSection: React.FC = () => {
 					← All disciplines
 				</Link>
 
-				<div className="vd-content relative z-10 px-6 md:px-14 pt-32 pb-8">
-					<div className="vd-eyebrow text-xs tracking-widest uppercase text-orange-500 mb-4">Discipline 01</div>
-					<h1 className="vd-title font-serif text-4xl md:text-6xl lg:text-[92px] font-normal leading-tight text-white max-w-4xl">Communications</h1>
-					<p className="vd-tagline text-base md:text-lg text-gray-300 max-w-3xl mt-6">Strategy-first communications that build reputation, protect brand equity, and shift how audiences think — at national and enterprise scale.</p>
+				<div className="vd-content relative z-10 px-6 md:px-14 pt-48 pb-8">
+					<div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 px-6 py-2 md:px-10 md:py-4 rounded-sm shadow-2xl mb-6">
+						<h1 className="vd-title font-serif text-4xl md:text-6xl lg:text-[92px] font-normal leading-tight text-orange-500">Communications</h1>
+					</div>
+					<p className="vd-tagline text-base md:text-lg text-orange-500 max-w-3xl mt-6">We make your brand talkable</p>
 				</div>
 			</section>
 

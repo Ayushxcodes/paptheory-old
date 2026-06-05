@@ -32,9 +32,10 @@ const HeroSection: React.FC = () => {
                     </Link>
 
                     <div className="vd-content relative z-10 px-6 md:px-14 pt-32 pb-8">
-                        <div className="vd-eyebrow text-xs tracking-widest uppercase text-orange-500 mb-4">Discipline 03</div>
-                        <h1 className="vd-title font-serif text-4xl md:text-6xl lg:text-[92px] font-normal leading-tight text-white max-w-4xl">Media</h1>
-                        <p className="vd-tagline text-base md:text-lg text-gray-300 max-w-3xl mt-6">Data-driven media planning and buying that gets the right creative in front of the right audience — broadcast, digital and OOH, with analytics to close the loop.</p>
+                        <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 px-6 py-2 md:px-10 md:py-4 rounded-sm shadow-2xl mb-6">
+                            <h1 className="vd-title font-serif text-4xl md:text-6xl lg:text-[92px] font-normal leading-tight text-orange-500">Media</h1>
+                        </div>
+                        <p className="vd-tagline text-base md:text-lg text-orange-500 max-w-3xl mt-6">Data-driven media planning and buying that gets the right creative in front of the right audience — broadcast, digital and OOH, with analytics to close the loop.</p>
                     </div>
                 </section>
 
