@@ -2,25 +2,27 @@
 import React from "react";
 import Link from "next/link";
 
-const HeroSection: React.FC = () => {
-    return (
-        <div className="page" id="page-media">
-            <section className="vd-hero relative overflow-hidden pt-40 md:pt-80">
+const videos = [
+	"68a58031faf881d01d012b62",
+];
 
-                    <div
-                        className="vd-hero-bg absolute inset-0 -z-10"
-                        style={{
-                            backgroundImage: "url('/banner3.png')",
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                        }}
-                    />
-                    <div
-                        className="absolute inset-0 -z-10"
-                        style={{
-                            background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 100%)",
-                        }}
-                    />
+const HeroSection: React.FC = () => {
+	return (
+		<div className="page" id="page-media">
+			<section className="vd-hero relative overflow-hidden pt-40 md:pt-80">
+				<div className="vd-hero-bg absolute inset-0 -z-10 overflow-hidden">
+					<iframe
+						src={`https://play.gumlet.io/embed/${videos[0]}?playsinline=1&autoplay=1&mute=1&loop=1&background=1`}
+						className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-full min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
+						allow="autoplay; fullscreen"
+					/>
+				</div>
+				<div
+					className="absolute inset-0 -z-10"
+					style={{
+						background: "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 100%)",
+					}}
+				/>
 
                     <div className="vd-num hidden lg:block absolute right-6 bottom-0 text-[220px] leading-none font-serif text-[rgba(232,80,10,0.06)] pointer-events-none">03</div>
 

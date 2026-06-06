@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 type LineItem = {
 	id: string;
@@ -14,6 +15,13 @@ type LineItem = {
 	mediaSrc?: string;
 	poster?: string;
 };
+
+const videos = [
+	"680104cd3f934d7b33b2f50e",
+	"680100853ab3a7b826bb539e",
+	"68a58031faf881d01d012b62",
+	"/techno.mp4",
+];
 
 const ITEMS: LineItem[] = [
 	{
@@ -127,20 +135,15 @@ const LineofWorkSection: React.FC<Props> = ({ onSelect }) => {
 							<div className="wwd-cta text-sm text-orange-600 font-medium mt-6">See the work <span aria-hidden>→</span></div>
 						</div>
 
-						<div className="wwd-visual w-full md:w-1/2 relative flex-shrink-0">
-							<div className="wwd-visual-media w-full h-56 md:h-72 rounded-sm overflow-hidden relative transform transition-all duration-500 group-hover:scale-105" style={{ background: it.visualBg }}>
-								{it.mediaSrc ? (
-									<video muted loop playsInline poster={it.poster ?? undefined} className="w-full h-full object-cover">
-										<source src={it.mediaSrc} type="video/mp4" />
-									</video>
-								) : null}
-								<div className="play-btn absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center shadow-lg animate-pulse-slow">
-									<svg className="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-										<path d="M10 8l6 4-6 4V8z" fill="currentColor" />
-									</svg>
-								</div>
-								<div className="wwd-vlabel absolute left-4 bottom-4 bg-black/70 text-xs text-white uppercase px-3 py-1 rounded-full transform transition-all duration-300 group-hover:translate-y-[-4px]">{it.vlabel}</div>
-							</div>
+						<div className="wwd-visual w-full md:w-1/2 relative flex-shrink-0 flex items-center justify-center">
+							<motion.div
+								initial={{ opacity: 0, y: 40 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.6 }}
+								className="w-full max-w-sm md:max-w-xl"
+							>
+								<VideoCard id={videos[idx % videos.length]} />
+							</motion.div>
 						</div>
 					</div>
 				))}
@@ -148,6 +151,28 @@ const LineofWorkSection: React.FC<Props> = ({ onSelect }) => {
 		</section>
 	);
 };
+
+function VideoCard({ id }: { id: string }) {
+	if (id.startsWith("/") || id.endsWith(".mp4")) {
+		return (
+			<div className="relative w-full aspect-video overflow-hidden rounded-2xl shadow-2xl bg-black hover:scale-[1.02] transition-transform duration-300">
+				<video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+					<source src={id} type="video/mp4" />
+				</video>
+			</div>
+		);
+	}
+	return (
+		<div className="relative w-full aspect-video overflow-hidden rounded-2xl shadow-2xl bg-black hover:scale-[1.02] transition-transform duration-300">
+			<iframe
+				src={`https://play.gumlet.io/embed/${id}?playsinline=1&autoplay=1&mute=1`}
+				className="absolute inset-0 w-full h-full border-0"
+				allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+				allowFullScreen
+			/>
+		</div>
+	);
+}
 
 export default LineofWorkSection;
 
