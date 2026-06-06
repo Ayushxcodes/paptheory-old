@@ -19,8 +19,8 @@ type LineItem = {
 const videos = [
 	"6904627fa5b40b283e125f54",
 	"680100853ab3a7b826bb539e",
-	"68a58031faf881d01d012b62",
-	"/techno.mp4",
+	"/media.mp4",
+	"/technology.mp4",
 ];
 
 const ITEMS: LineItem[] = [

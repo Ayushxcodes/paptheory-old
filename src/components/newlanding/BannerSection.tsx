@@ -37,8 +37,8 @@ const defaultBanners: Banner[] = [
 		title: 'Media', 
 		subtitle: 'We put your message in the right place.', 
 		cta: { label: 'Explore Media', href: '/media' },
-		videoType: 'gumlet',
-		videoSrc: '68a58031faf881d01d012b62'
+		videoType: 'local',
+		videoSrc: '/media.mp4'
 	},
 	{ 
 		id: 4, 
@@ -47,7 +47,7 @@ const defaultBanners: Banner[] = [
 		subtitle: 'We build software that matters.', 
 		cta: { label: 'Explore Technology', href: '/technology' },
 		videoType: 'local',
-		videoSrc: '/ayurved_cut.mp4'
+		videoSrc: '/technology.mp4'
 	},
 ]
 
