@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Play, Pause } from 'lucide-react'
-import Image from 'next/image'
 
 type Banner = {
 	id: number
@@ -8,16 +7,48 @@ type Banner = {
 	title: string
 	subtitle?: string
 	cta?: { label: string; href?: string }
-	// if `image` is provided it will be used as background-image, otherwise `bg` (gradient/color)
-	image?: string
 	bg?: string
+	videoType: 'gumlet' | 'local'
+	videoSrc: string
 }
 
 const defaultBanners: Banner[] = [
-	{ id: 1, tag: 'Discipline 1', title: 'Communications', subtitle: 'Strategy-first communications that build reputation, protect brand equity, and shift how audiences think — at national and enterprise scale.', cta: { label: 'Explore Communications', href: '/communications' }, image: '/banner1.png' },
-	{ id: 2, tag: 'Discipline 2', title: 'Creative', subtitle: 'We engineer perception in the age of visibility. Idea-led creative across campaigns, identity and content — work built to be remembered, not just noticed.', cta: { label: 'Explore Creative', href: '/creative' }, image: '/banner2.png' },
-	{ id: 3, tag: 'Discipline 3', title: 'Media', subtitle: 'Data-driven media planning and buying that gets the right creative in front of the right audience — broadcast, digital and OOH, with analytics to close the loop.', cta: { label: 'Explore Media', href: '/media' }, image: '/banner3.png' },
-	{ id: 4, tag: 'Discipline 4', title: 'Technology', subtitle: 'Enterprise-grade consulting and product engineering. We have built field-operations platforms for global companies across 4 regions and we bring that rigour to every engagement', cta: { label: 'Explore Technology', href: '/technology' }, image: '/banner4.png' },
+	{ 
+		id: 1, 
+		tag: 'Discipline 1', 
+		title: 'Communications', 
+		subtitle: 'We make your brand talkable', 
+		cta: { label: 'Explore Communications', href: '/communications' },
+		videoType: 'gumlet',
+		videoSrc: '6904627fa5b40b283e125f54'
+	},
+	{ 
+		id: 2, 
+		tag: 'Discipline 2', 
+		title: 'Creative', 
+		subtitle: 'We turn ideas into culture — not ads.', 
+		cta: { label: 'Explore Creative', href: '/creative' },
+		videoType: 'local',
+		videoSrc: '/vid2.mp4'
+	},
+	{ 
+		id: 3, 
+		tag: 'Discipline 3', 
+		title: 'Media', 
+		subtitle: 'We put your message in the right place.', 
+		cta: { label: 'Explore Media', href: '/media' },
+		videoType: 'gumlet',
+		videoSrc: '68a58031faf881d01d012b62'
+	},
+	{ 
+		id: 4, 
+		tag: 'Discipline 4', 
+		title: 'Technology', 
+		subtitle: 'We build software that matters.', 
+		cta: { label: 'Explore Technology', href: '/technology' },
+		videoType: 'local',
+		videoSrc: '/ayurved_cut.mp4'
+	},
 ]
 
 export default function BannerSection({ banners = defaultBanners, interval = 6000 }: { banners?: Banner[]; interval?: number }) {
@@ -63,27 +94,37 @@ export default function BannerSection({ banners = defaultBanners, interval = 600
 					return (
 						<div
 							key={b.id}
-							className={`slide banner-slide-bg ${i === index ? 'active animate-zoom' : ''}`}
+							className={`slide banner-slide-bg ${i === index ? 'active' : ''}`}
 							style={b.bg ? { background: b.bg } : {}}
 						>
-							{b.image && (
-								<Image
-									src={b.image}
-									alt={b.title}
-									fill
-									priority={true}
-									sizes="100vw"
-									quality={85}
-									className="object-cover"
-									style={{ zIndex: -10 }}
-								/>
+							{b.videoType === 'gumlet' ? (
+								<div className="absolute inset-0 -z-10 overflow-hidden w-full h-full">
+									<iframe
+										src={`https://play.gumlet.io/embed/${b.videoSrc}?playsinline=1&autoplay=1&mute=1&loop=1&background=1`}
+										className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-full min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
+										allow="autoplay; fullscreen"
+									/>
+								</div>
+							) : (
+								<video
+									autoPlay
+									muted
+									loop
+									playsInline
+									className="absolute inset-0 -z-10 w-full h-full object-cover"
+								>
+									<source src={b.videoSrc} type="video/mp4" />
+								</video>
 							)}
 							<div className="banner-overlay" style={{ zIndex: -5 }} />
 							<div className="container">
 								<div className="left">
-									{b.tag && <div className="tag">{b.tag}</div>}
 									<h1 className="title">{b.title.split('\n').map((line, idx) => (<span key={idx}>{line}<br/></span>))}</h1>
-									{b.subtitle && <p className="subtitle">{b.subtitle}</p>}
+									{b.subtitle && (
+										<p className="subtitle text-xl md:text-2xl font-serif italic text-gray-200 border-l-4 border-orange-500 pl-6 my-6 leading-relaxed max-w-2xl">
+											&ldquo;{b.subtitle}&rdquo;
+										</p>
+									)}
 									{b.cta && <a className="cta" href={b.cta.href || '#'}>{b.cta.label} <span className="arrow">→</span></a>}
 								</div>
 							</div>
