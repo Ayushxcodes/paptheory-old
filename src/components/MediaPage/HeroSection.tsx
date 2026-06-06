@@ -2,21 +2,19 @@
 import React from "react";
 import Link from "next/link";
 
-const videos = [
-	"68a58031faf881d01d012b62",
-];
-
 const HeroSection: React.FC = () => {
 	return (
 		<div className="page" id="page-media">
 			<section className="vd-hero relative overflow-hidden pt-40 md:pt-80">
-				<div className="vd-hero-bg absolute inset-0 -z-10 overflow-hidden">
-					<iframe
-						src={`https://play.gumlet.io/embed/${videos[0]}?playsinline=1&autoplay=1&mute=1&loop=1&background=1`}
-						className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-full min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
-						allow="autoplay; fullscreen"
-					/>
-				</div>
+				<video
+					autoPlay
+					muted
+					loop
+					playsInline
+					className="vd-hero-bg absolute inset-0 -z-10 w-full h-full object-cover"
+				>
+					<source src="/media.mp4" type="video/mp4" />
+				</video>
 				<div
 					className="absolute inset-0 -z-10"
 					style={{

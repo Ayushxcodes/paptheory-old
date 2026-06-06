@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => {
                         playsInline
                         className="vd-hero-bg absolute inset-0 -z-10 w-full h-full object-cover"
                     >
-                        <source src="/ayurved_cut.mp4" type="video/mp4" />
+                        <source src="/technology.mp4" type="video/mp4" />
                     </video>
                     <div
                         className="absolute inset-0 -z-10"
