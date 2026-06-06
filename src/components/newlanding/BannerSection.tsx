@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Play, Pause } from 'lucide-react'
+import Image from 'next/image'
 
 type Banner = {
 	id: number
@@ -59,10 +60,25 @@ export default function BannerSection({ banners = defaultBanners, interval = 600
 		>
 			<div className="slides">
 				{banners.map((b, i) => {
-					const bgStyle = b.image ? { backgroundImage: `url(${b.image})` } : b.bg ? { background: b.bg } : {}
 					return (
-						<div key={b.id} className={`slide banner-slide-bg ${i === index ? 'active animate-zoom' : ''}`} style={bgStyle}>
-							<div className="banner-overlay" />
+						<div
+							key={b.id}
+							className={`slide banner-slide-bg ${i === index ? 'active animate-zoom' : ''}`}
+							style={b.bg ? { background: b.bg } : {}}
+						>
+							{b.image && (
+								<Image
+									src={b.image}
+									alt={b.title}
+									fill
+									priority={true}
+									sizes="100vw"
+									quality={85}
+									className="object-cover"
+									style={{ zIndex: -10 }}
+								/>
+							)}
+							<div className="banner-overlay" style={{ zIndex: -5 }} />
 							<div className="container">
 								<div className="left">
 									{b.tag && <div className="tag">{b.tag}</div>}
