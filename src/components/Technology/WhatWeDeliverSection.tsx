@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const SERVICES = [
 	{
@@ -115,6 +116,31 @@ const SERVICES = [
 	},
 ];
 
+const containerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.03,
+			delayChildren: 0.1,
+		},
+	},
+};
+
+const tagVariants = {
+	hidden: { opacity: 0, y: 12, scale: 0.9 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		scale: 1,
+		transition: {
+			type: "spring" as const,
+			stiffness: 140,
+			damping: 15,
+		},
+	},
+};
+
 const WhatWeDeliverSection: React.FC = () => {
 	const [openIndex, setOpenIndex] = useState<number>(0);
 
@@ -195,20 +221,24 @@ const WhatWeDeliverSection: React.FC = () => {
 									<div className="p-8 md:p-10 pt-0 md:pt-0 text-sm md:text-base lg:text-lg text-neutral-900 leading-relaxed font-light">
 										<p className="mb-6">{s.desc}</p>
 										{s.stack && (
-											<div className="flex flex-wrap gap-2">
+											<motion.div
+												variants={containerVariants}
+												initial="hidden"
+												animate={isOpen ? "visible" : "hidden"}
+												className="flex flex-wrap gap-2"
+											>
 												{s.stack.map((t) => (
-													<span
+													<motion.span
 														key={t}
-														className="bg-transparent border border-neutral-200/80 text-xs md:text-sm text-neutral-600 px-3.5 py-1.5 rounded-full font-light"
+														variants={tagVariants}
+														className="bg-transparent border border-neutral-200/80 text-xs md:text-sm text-neutral-600 px-3.5 py-1.5 rounded-full font-light hover:border-[#e8500a]/60 hover:text-[#e8500a] hover:bg-[#e8500a]/5 transition-colors duration-300 cursor-default"
+														whileHover={{ scale: 1.05, y: -2 }}
+														whileTap={{ scale: 0.95 }}
 													>
-														{s.mark === "01" && t === "SAP BTP" ? (
-															<strong className="text-neutral-900">{t}</strong>
-														) : (
-															t
-														)}
-													</span>
+														{t}
+													</motion.span>
 												))}
-											</div>
+											</motion.div>
 										)}
 									</div>
 								</div>

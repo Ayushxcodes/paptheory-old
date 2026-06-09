@@ -12,6 +12,7 @@ const DEMOS = [
 		desc: "Patient appointments and follow-ups with AI speech-to-text clinical notes. Built so clinicians spend their time on patients, not paperwork.",
 		tags: ["React", "Node.js", "GenAI", "Speech-to-Text"],
 		src: "/cut_careflow.mp4",
+		poster: "/careflow.png",
 	},
 	{
 		category: "HOSPITAL & PHARMA",
@@ -19,6 +20,7 @@ const DEMOS = [
 		desc: "AyurVaidya is a smart inventory system for Ayurveda hospitals, covering both OPEX — medicines and consumables — and CAPEX — equipment and AMC contracts — with AI that keeps everything tracked and audit-ready.",
 		tags: ["AI", "Inventory", "CAPEX", "OPEX", "Barcode Tracking"],
 		src: "/ayurved_cut.mp4",
+		poster: "/ayur.png",
 	},
 ];
 
@@ -27,7 +29,7 @@ const CASES = [
 		category: "MINING & EXPLOSIVES",
 		title: "Field Operations Intelligence Platform",
 		desc: "Field Ops Intelligence is a field operations platform for mining and explosives companies — managing blast scheduling, inbound stock delivery, goods receipt and inventory reconciliation across multiple plants, in real time.",
-		imageSrc: "/mining-logo.png",
+		imageSrc: "/tech2.png",
 		stats: [
 			{ value: "16 → 1", label: "CLICK / PGR AUTOMATED" },
 			{ value: "4", label: "REGIONS LIVE" },
@@ -40,7 +42,7 @@ const CASES = [
 		category: "MANUFACTURING & SUPPLY CHAIN",
 		title: "PO-to-SO Automation",
 		desc: "Reads purchase orders arriving by email, extracts the data with Document AI, validates it and creates the Sales Order in SAP automatically — turning hours of manual entry into one click.",
-		imageSrc: "/mfg-logo.png",
+		imageSrc: "/tech3.png",
 		stats: [
 			{ value: "90%", label: "LESS MANUAL ENTRY" },
 			{ value: "Hours → mins", label: "PROCESSING TIME" },
@@ -52,7 +54,7 @@ const CASES = [
 		category: "OIL & GAS",
 		title: "StockSense AI",
 		desc: "Mobile field execution with AI-powered analytics. Track stock, manage transfers and approvals from any device — while AI flags obsolete materials, predicts replenishment and answers natural language inventory queries.",
-		imageSrc: "/oil-logo.png",
+		imageSrc: "/stocksense.jpeg",
 		tags: ["SAP Build Apps", "CAPM", "OData", "AI Analytics"],
 		cols: "lg:col-span-2",
 	},
@@ -60,7 +62,7 @@ const CASES = [
 		category: "ENTERPRISE ANALYTICS",
 		title: "Clean Core Assessment Dashboard",
 		desc: "Analysed 15+ SAP systems — classified 45,000+ custom objects into standardisation tiers with 360° system-health views to drive S/4HANA migration planning.",
-		imageSrc: "/analytics-logo.png",
+		imageSrc: "/tech1.png",
 		stats: [
 			{ value: "45,000+", label: "OBJECTS CLASSIFIED" },
 		],
@@ -196,19 +198,11 @@ const LiveDemoSection: React.FC = () => {
 									playsInline
 									preload="metadata"
 									src={d.src}
+									poster={d.poster}
 								/>
 
 								{/* Dark overlay gradient for text contrast */}
 								<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-0"></div>
-
-								{/* Center Play Button */}
-								<div className="absolute inset-0 flex items-center justify-center z-10">
-									<div className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-neutral-800 shadow-lg transition-all duration-300 group-hover:scale-110">
-										<svg className="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24">
-											<path d="M8 5v14l11-7z" />
-										</svg>
-									</div>
-								</div>
 
 								{/* Left Bottom Title Block */}
 								<div className="absolute bottom-6 left-6 z-10">
@@ -286,13 +280,12 @@ const LiveDemoSection: React.FC = () => {
 							>
 								<div className="w-full">
 									{/* Logo Container */}
-									<div className="w-full h-32 bg-[#f5efe9]/60 rounded-2xl flex items-center justify-center relative overflow-hidden mb-6 border border-neutral-200/20">
+									<div className="w-full h-64 bg-[#f5efe9]/60 rounded-2xl relative overflow-hidden mb-6 border border-neutral-200/20">
 										<Image
 											src={c.imageSrc || ""}
 											alt={c.title || ""}
-											width={56}
-											height={56}
-											className="object-contain"
+											fill
+											className="object-cover"
 										/>
 									</div>
 
@@ -313,10 +306,10 @@ const LiveDemoSection: React.FC = () => {
 										<div className="flex flex-wrap items-center gap-x-8 gap-y-4 my-6 pt-6 border-t border-neutral-100">
 											{c.stats.map((s, sIdx) => (
 												<div key={sIdx} className="flex flex-col">
-													<span className="font-serif text-3xl md:text-4xl text-[#e8500a] font-semibold">
+													<span className="font-serif text-xl md:text-2xl text-[#e8500a] font-semibold">
 														{s.value}
 													</span>
-													<span className="text-[10px] md:text-xs text-neutral-400 font-semibold tracking-wider uppercase mt-1.5">
+													<span className="text-[9px] md:text-[10px] text-neutral-400 font-semibold tracking-wider uppercase mt-1">
 														{s.label}
 													</span>
 												</div>
@@ -382,6 +375,7 @@ const LiveDemoSection: React.FC = () => {
 								controls
 								className="w-full h-full object-contain"
 								playsInline
+								poster={activeDemo.poster}
 							/>
 						</div>
 
