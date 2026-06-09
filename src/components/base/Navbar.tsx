@@ -1,15 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== "undefined") {
+        if (window.scrollY > 20) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      mobileMenuOpen
+        ? (isScrolled ? 'bg-white' : 'bg-black/95 backdrop-blur-md')
+        : (isScrolled ? 'bg-white shadow-md' : 'bg-transparent')
+    }`}>
       <div className="mx-auto max-w-[1200px] px-6 h-[72px] flex items-center justify-between">
         <Link
           href="/"
@@ -21,7 +42,7 @@ export default function Navbar() {
             alt="Paper Theory Logo"
             width={280}
             height={60}
-            className="h-17 md:h-20 w-auto"
+            className="h-10 sm:h-12 md:h-20 w-auto max-w-[180px] sm:max-w-[220px] md:max-w-none"
           />
         </Link>
 
@@ -29,25 +50,25 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-8 text-sm text-neutral-700 relative">
           <Link
             href="/communications"
-            className="transition-colors duration-200 text-white hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+            className={`transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
           >
             Communications
           </Link>
           <Link
             href="/creative"
-            className="transition-colors duration-200 text-white hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+            className={`transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
           >
             Creative
           </Link>
           <Link
             href="/media"
-            className="transition-colors duration-200 text-white hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+            className={`transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
           >
             Media
           </Link>
           <Link
             href="/technology"
-            className="transition-colors duration-200 text-white hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+            className={`transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
           >
             Technology
           </Link>
@@ -61,7 +82,11 @@ export default function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2 rounded-md text-white hover:bg-white/10 transition-colors"
+          className={`md:hidden p-2 rounded-md transition-colors ${
+            mobileMenuOpen
+              ? (isScrolled ? 'text-black hover:bg-black/10' : 'text-white hover:bg-white/10')
+              : (isScrolled ? 'text-black hover:bg-black/10' : 'text-white hover:bg-white/10')
+          }`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -70,40 +95,44 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black/80 backdrop-blur-md border-t border-white/10">
+        <div className={`md:hidden transition-colors duration-300 border-t max-h-[calc(100vh-72px)] overflow-y-auto ${
+          isScrolled
+            ? 'bg-white border-neutral-200'
+            : 'bg-black/95 backdrop-blur-md border-white/10'
+        }`}>
           <div className="px-6 py-4 space-y-4">
             <Link
               href="/communications"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className={`block w-full text-left py-2 text-sm transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
             >
               Communications
             </Link>
             <Link
               href="/creative"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className={`block w-full text-left py-2 text-sm transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
             >
               Creative
             </Link>
             <Link
               href="/media"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className={`block w-full text-left py-2 text-sm transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
             >
               Media
             </Link>
             <Link
               href="/technology"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className={`block w-full text-left py-2 text-sm transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
             >
               Technology
             </Link>
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className={`block w-full text-left py-2 text-sm transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216] ${isScrolled ? 'text-black' : 'text-white'}`}
             >
               Start a Project
             </Link>
