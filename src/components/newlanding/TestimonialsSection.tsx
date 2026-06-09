@@ -180,15 +180,15 @@ const TestimonialsSection: React.FC = () => {
 						<p className="contact-body text-gray-600 mb-6">A brand story, a campaign, a media plan, or an enterprise platform — or all of it, working as one. Tell us what you&apos;re trying to move.</p>
 						<button
 							className="inline-block bg-orange-500 text-black font-medium py-3 px-6 rounded-full mb-6 hover:bg-orange-600 transition-colors cursor-pointer"
-							onClick={() => (window.location.href = 'mailto:hello@papertheorynet.com')}
+							onClick={() => (window.location.href = 'mailto:consulting@papertheorynet.com')}
 						>
 							Start a Conversation →
 						</button>
 
 						<div className="contact-list text-sm text-gray-500 space-y-3">
-							<div className="contact-row"><span className="contact-key inline-block w-24 text-xs text-orange-500 uppercase tracking-widest">General</span> hello@papertheorynet.com</div>
+							<div className="contact-row"><span className="contact-key inline-block w-24 text-xs text-orange-500 uppercase tracking-widest">General</span> official@papertheorynet.com</div>
 							<div className="contact-row"><span className="contact-key inline-block w-24 text-xs text-orange-500 uppercase tracking-widest">IT &amp; Tech</span> consulting@papertheorynet.com</div>
-							<div className="contact-row"><span className="contact-key inline-block w-24 text-xs text-orange-500 uppercase tracking-widest">Location</span> Pune, India · Working globally</div>
+							<div className="contact-row"><span className="contact-key inline-block w-24 text-xs text-orange-500 uppercase tracking-widest">Location</span> Gurgaon, India · Working globally</div>
 						</div>
 					</div>
 				</div>

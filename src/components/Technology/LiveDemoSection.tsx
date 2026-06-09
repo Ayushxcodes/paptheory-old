@@ -39,15 +39,15 @@ const CASES = [
 		cols: "lg:col-span-3",
 	},
 	{
-		category: "MANUFACTURING & SUPPLY CHAIN",
-		title: "PO-to-SO Automation",
-		desc: "Reads purchase orders arriving by email, extracts the data with Document AI, validates it and creates the Sales Order in SAP automatically — turning hours of manual entry into one click.",
-		imageSrc: "/tech3.png",
+		category: "ENTERPRISE ANALYTICS",
+		title: "Clean Core Assessment Dashboard",
+		desc: "Analysed 15+ SAP systems — classified 45,000+ custom objects into standardisation tiers with 360° system-health views to drive S/4HANA migration planning.",
+		imageSrc: "/tech1.png",
 		stats: [
-			{ value: "90%", label: "LESS MANUAL ENTRY" },
-			{ value: "Hours → mins", label: "PROCESSING TIME" },
+			{ value: "45,000+", label: "OBJECTS CLASSIFIED" },
+			{ value: "Live/SAP Analytics Cloud", label: "OBJECTS CLASSIFIED" },
 		],
-		tags: ["GenAI", "Document AI", "CAPM", "S/4HANA", "SAP Build", "SAP BPA"],
+		tags: ["SAP BTP", "SAP Analytics Cloud", "CAPM", "S/4HANA"],
 		cols: "lg:col-span-3",
 	},
 	{
@@ -59,14 +59,15 @@ const CASES = [
 		cols: "lg:col-span-2",
 	},
 	{
-		category: "ENTERPRISE ANALYTICS",
-		title: "Clean Core Assessment Dashboard",
-		desc: "Analysed 15+ SAP systems — classified 45,000+ custom objects into standardisation tiers with 360° system-health views to drive S/4HANA migration planning.",
-		imageSrc: "/tech1.png",
+		category: "MANUFACTURING & SUPPLY CHAIN",
+		title: "PO-to-SO Automation",
+		desc: "Reads purchase orders arriving by email, extracts the data with Document AI, validates it and creates the Sales Order in SAP automatically — turning hours of manual entry into one click.",
+		imageSrc: "/tech3.png",
 		stats: [
-			{ value: "45,000+", label: "OBJECTS CLASSIFIED" },
+			{ value: "90%", label: "LESS MANUAL ENTRY" },
+			{ value: "Hours → mins", label: "PROCESSING TIME" },
 		],
-		tags: ["SAP BTP", "SAP Analytics Cloud", "CAPM", "S/4HANA"],
+		tags: ["GenAI", "Document AI", "CAPM", "S/4HANA", "SAP Build", "SAP BPA"],
 		cols: "lg:col-span-2",
 	},
 	{
@@ -306,8 +307,15 @@ const LiveDemoSection: React.FC = () => {
 										<div className="flex flex-wrap items-center gap-x-8 gap-y-4 my-6 pt-6 border-t border-neutral-100">
 											{c.stats.map((s, sIdx) => (
 												<div key={sIdx} className="flex flex-col">
-													<span className="font-serif text-xl md:text-2xl text-[#e8500a] font-semibold">
-														{s.value}
+													<span className="font-serif text-xl md:text-2xl font-semibold">
+														{s.value.startsWith("Live/") ? (
+															<>
+																<span className="text-[#e8500a]">Live</span>
+																<span className="text-neutral-900">{s.value.slice(4)}</span>
+															</>
+														) : (
+															<span className="text-[#e8500a]">{s.value}</span>
+														)}
 													</span>
 													<span className="text-[9px] md:text-[10px] text-neutral-400 font-semibold tracking-wider uppercase mt-1">
 														{s.label}

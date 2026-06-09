@@ -55,7 +55,7 @@ const ITEMS: LineItem[] = [
 		id: "technology",
 		index: "04",
 		name: "Technology",
-		desc: "Enterprise-grade consulting and product engineering — SAP BTP, AI, cloud and full-stack. With live, working demos for CareFlow and Ayurveda Inventory.",
+		desc: "Every industry runs on processes that could be smarter. We map yours, find where software creates the most leverage, and build it — AI, automation, platforms, digital twins, whatever the problem demands.",
 		services: ["AI & Automation", "ERP", "Cloud", "Product Engineering"],
 		visualBg: "radial-gradient(ellipse at 50% 45%, rgba(232,80,10,0.3), transparent 65%), linear-gradient(135deg,#1c1613,#080808)",
 		vlabel: "Platform demo · placeholder",
