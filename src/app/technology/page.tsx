@@ -27,11 +27,6 @@ const TechnologyPage = () => {
           <WhatWeDeliverSection />
         </AnimatedSection>
 
-        
-
-        <AnimatedSection>
-          <WorkSection />
-        </AnimatedSection>
 
         <DisciplineNavigation />
     </div>
