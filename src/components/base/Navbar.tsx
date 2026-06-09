@@ -9,7 +9,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200">
+    <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
       <div className="mx-auto max-w-[1200px] px-6 h-[72px] flex items-center justify-between">
         <Link
           href="/"
@@ -29,25 +29,25 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-8 text-sm text-neutral-700 relative">
           <Link
             href="/communications"
-            className="transition-colors duration-200 text-neutral-700 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+            className="transition-colors duration-200 text-white hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
           >
             Communications
           </Link>
           <Link
             href="/creative"
-            className="transition-colors duration-200 text-neutral-700 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+            className="transition-colors duration-200 text-white hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
           >
             Creative
           </Link>
           <Link
             href="/media"
-            className="transition-colors duration-200 text-neutral-700 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+            className="transition-colors duration-200 text-white hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
           >
             Media
           </Link>
           <Link
             href="/technology"
-            className="transition-colors duration-200 text-neutral-700 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+            className="transition-colors duration-200 text-white hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
           >
             Technology
           </Link>
@@ -61,7 +61,7 @@ export default function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2 rounded-md text-neutral-700 hover:bg-neutral-100"
+          className="md:hidden p-2 rounded-md text-white hover:bg-white/10 transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -70,40 +70,40 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-neutral-200">
+        <div className="md:hidden bg-black/80 backdrop-blur-md border-t border-white/10">
           <div className="px-6 py-4 space-y-4">
             <Link
               href="/communications"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-neutral-700 transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
             >
               Communications
             </Link>
             <Link
               href="/creative"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-neutral-700 transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
             >
               Creative
             </Link>
             <Link
               href="/media"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-neutral-700 transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
             >
               Media
             </Link>
             <Link
               href="/technology"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-neutral-700 transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
             >
               Technology
             </Link>
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-2 text-sm text-neutral-700 transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
+              className="block w-full text-left py-2 text-sm text-white transition-colors duration-200 hover:text-[#f99216] focus:text-[#f99216] active:text-[#f99216]"
             >
               Start a Project
             </Link>

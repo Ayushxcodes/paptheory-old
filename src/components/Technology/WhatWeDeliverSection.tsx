@@ -1,124 +1,225 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
+import React, { useState } from "react";
 
 const SERVICES = [
-  {
-    mark: "01",
-    title: "AI & Intelligent Automation",
-    desc: "GenAI integration, AI forecasting, document extraction and intelligent workflows that take repetitive decisions off people's plates across enterprise stacks.",
-    stack: ["GenAI / LLM", "RAG", "OCR", "Forecasting"],
-  },
-  {
-    mark: "02",
-    title: "ERP & Enterprise Solutions",
-    desc: "SAP BTP, S/4HANA, CAPM, OData and Fiori — architecture, implementation and custom development for global operations.",
-    stack: ["SAP BTP", "S/4HANA", "CAPM", "Fiori"],
-  },
-  {
-    mark: "03",
-    title: "Web & Mobile Development",
-    desc: "React and Node.js full-stack engineering — MVP to production, including offline-first apps built for remote field environments.",
-    stack: ["React", "Node.js", "iOS", "Android"],
-  },
-  {
-    mark: "04",
-    title: "Cloud & DevOps",
-    desc: "HANA Cloud, BTP infrastructure, CI/CD pipelines and cloud-native architecture for systems that scale predictably.",
-    stack: ["HANA Cloud", "CI/CD", "Cloud-native"],
-  },
-  {
-    mark: "05",
-    title: "Business Process Automation",
-    desc: "End-to-end digitisation — delivery, inventory, scheduling and reporting — integrated cleanly with the core ERP.",
-    stack: ["Workflow", "Integration", "OData"],
-  },
-  {
-    mark: "06",
-    title: "Data & Analytics",
-    desc: "Real-time dashboards, KPI tracking and rolling forecasts built on HANA and SAC — turning operational data into decisions.",
-    stack: ["HANA", "SAC", "Dashboards"],
-  },
+	{
+		mark: "01",
+		title: "ERP & Enterprise Architecture",
+		desc: "Production-grade SAP BTP and S/4HANA programmes — designed and built end-to-end by a certified BTP Solution Architect.",
+		stack: [
+			"SAP BTP",
+			"S/4HANA",
+			"CAPM",
+			"Fiori",
+			"SAPUI5",
+			"OData",
+			"ABAP",
+			"SAP Build Apps",
+			"SAP Build Process Automation",
+			"SAP Mobile Services",
+			"SAP Joule",
+			"Workzone",
+			"Clean Core",
+			"BTP DMS"
+		],
+	},
+	{
+		mark: "02",
+		title: "AI & Intelligent Automation",
+		desc: "GenAI, RAG and document AI embedded inside real enterprise workflows — not chatbot demos, not slide-deck pilots.",
+		stack: [
+			"GenAI",
+			"LLMs",
+			"RAG",
+			"LangChain",
+			"Vector Search",
+			"SAP AI Core",
+			"Document AI",
+			"SAP Document Information Extraction",
+			"Machine Learning",
+			"Predictive Analytics",
+			"Digital Twins",
+			"Forecasting"
+		],
+	},
+	{
+		mark: "03",
+		title: "Web & Mobile Development",
+		desc: "Modern full-stack product engineering for web, iOS and Android — from MVP to enterprise-scale rollout.",
+		stack: [
+			"React",
+			"Angular",
+			"Node.js",
+			"Express",
+			"JavaScript",
+			"TypeScript",
+			"MEAN Stack",
+			"MongoDB",
+			"Mongoose",
+			"Native iOS",
+			"Android",
+			"Hapi.js",
+			"WebSockets",
+			"REST APIs"
+		],
+	},
+	{
+		mark: "04",
+		title: "Cloud, DevOps & Integration",
+		desc: "Cloud-native platforms, CI/CD pipelines and integration fabric — the plumbing that keeps everything running.",
+		stack: [
+			"HANA Cloud",
+			"Cloud Foundry",
+			"AWS",
+			"EC2",
+			"Cloud-Native",
+			"CI/CD Pipelines",
+			"DevOps",
+			"Microservices",
+			"API Integration",
+			"nginx",
+			"Redis",
+			"Twilio",
+			"Stripe",
+			"Socket.io"
+		],
+	},
+	{
+		mark: "05",
+		title: "Business Process Automation",
+		desc: "Workflow orchestration and process automation that removes hours of manual work, with audit trails baked in.",
+		stack: [
+			"Business Process Automation",
+			"SAP Build Process Automation",
+			"Workflow Orchestration",
+			"System Integration",
+			"OData",
+			"Role-Based Access",
+			"Token Auth"
+		],
+	},
+	{
+		mark: "06",
+		title: "Data & Analytics",
+		desc: "Decision-grade dashboards on real-time data — from finance to field operations.",
+		stack: [
+			"SAP Analytics Cloud",
+			"HANA Cloud",
+			"HANA Calculation Views",
+			"Python",
+			"Predictive Analytics",
+			"KPI Dashboards",
+			"Real-Time Reporting"
+		],
+	},
 ];
+
 const WhatWeDeliverSection: React.FC = () => {
-  const [openIndex, setOpenIndex] = useState<number>(0);
-  const innerRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const [heights, setHeights] = useState<number[]>([]);
+	const [openIndex, setOpenIndex] = useState<number>(0);
 
-  useEffect(() => {
-    // ensure refs array length matches SERVICES length
-    innerRefs.current = innerRefs.current.slice(0, SERVICES.length);
-  }, []);
+	const toggleCap = (i: number) => {
+		setOpenIndex((prev) => (prev === i ? -1 : i));
+	};
 
-  // Measure heights after DOM mutations
-  useLayoutEffect(() => {
-    setHeights(innerRefs.current.map((el) => (el ? el.scrollHeight : 0)));
-  }, []);
+	return (
+		<section className="py-20 md:py-28 bg-white text-neutral-900" id="capabilities">
+			<div className="mx-auto max-w-[1440px] px-6 md:px-12">
+				
+				{/* Section Header */}
+				<div className="mb-12 md:mb-16">
+					<span className="text-[10px] md:text-xs text-[#e8500a] font-semibold tracking-[0.25em] uppercase mb-4 block">
+						CAPABILITIES
+					</span>
+					<h2 className="font-serif text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.12] text-neutral-900 tracking-tight max-w-4xl">
+						The full enterprise tech stack — architected, not assembled.
+					</h2>
+				</div>
 
-  // Re-measure on window resize
-  useEffect(() => {
-    const onResize = () => setHeights(innerRefs.current.map((el) => (el ? el.scrollHeight : 0)));
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
+				{/* Accordion Grid */}
+				<div className="grid grid-cols-1 md:grid-cols-2 border border-neutral-400/60 rounded-3xl overflow-hidden">
+					{SERVICES.map((s, i) => {
+						const isOpen = openIndex === i;
+						const isLeft = i % 2 === 0;
+						
+						return (
+							<div
+								key={s.mark}
+								className={`bg-white transition-all duration-300 border-neutral-400/60 ${
+									isLeft ? "md:border-r" : ""
+								} ${
+									i < 5 ? "border-b" : ""
+								} ${
+									i < 4 ? "md:border-b" : "md:border-b-0"
+								}`}
+							>
+								{/* Accordion Header */}
+								<div
+									className="flex items-center justify-between cursor-pointer p-8 md:p-10 hover:bg-[#fff8f4]/30 transition-colors"
+									onClick={() => toggleCap(i)}
+									role="button"
+									tabIndex={0}
+									onKeyDown={(e) => {
+										if (e.key === "Enter" || e.key === " ") {
+											e.preventDefault();
+											toggleCap(i);
+										}
+									}}
+								>
+									<div className="flex flex-col items-start">
+										<span className="text-xs md:text-sm text-[#e8500a] font-semibold tracking-wider mb-2">
+											{s.mark}
+										</span>
+										<span className="font-serif text-xl md:text-2xl lg:text-[26px] text-neutral-900 font-normal leading-snug">
+											{s.title}
+										</span>
+									</div>
+									<svg
+										className={`w-6 h-6 text-neutral-400 transition-transform duration-300 flex-shrink-0 ${
+											isOpen ? "rotate-180 text-[#e8500a]" : ""
+										}`}
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+									>
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+									</svg>
+								</div>
 
-  const toggleCap = (i: number) => {
-    setOpenIndex((prev) => (prev === i ? -1 : i));
-  };
+								{/* Accordion Body */}
+								<div
+									className={`overflow-hidden transition-all duration-500 ease-in-out ${
+										isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+									}`}
+								>
+									<div className="p-8 md:p-10 pt-0 md:pt-0 text-sm md:text-base lg:text-lg text-neutral-900 leading-relaxed font-light">
+										<p className="mb-6">{s.desc}</p>
+										{s.stack && (
+											<div className="flex flex-wrap gap-2">
+												{s.stack.map((t) => (
+													<span
+														key={t}
+														className="bg-transparent border border-neutral-200/80 text-xs md:text-sm text-neutral-600 px-3.5 py-1.5 rounded-full font-light"
+													>
+														{s.mark === "01" && t === "SAP BTP" ? (
+															<strong className="text-neutral-900">{t}</strong>
+														) : (
+															t
+														)}
+													</span>
+												))}
+											</div>
+										)}
+									</div>
+								</div>
+							</div>
+						);
+					})}
+				</div>
 
-  return (
-    <section className="section py-12 md:py-20 px-6 md:px-20 bg-white text-gray-900" id="capabilities">
-      <div className="max-w-7xl mx-auto">
-        <div className="section-label text-orange-600 uppercase tracking-widest text-sm mb-3">What We Deliver</div>
-        <h2 className="section-title font-serif text-4xl md:text-6xl lg:text-7xl font-normal mb-8">Capabilities</h2>
-
-        <div className="cap-grid grid grid-cols-1 md:grid-cols-2 border border-gray-200" id="capGrid">
-        {SERVICES.map((s, i) => {
-          const isOpen = openIndex === i;
-          const row = Math.floor(i / 2);
-          const isLeft = i % 2 === 0;
-          const addBorderBottom = row < 2; // top two rows have bottom border on md
-          return (
-            <div
-              key={s.mark}
-              className={`cap ${isOpen ? 'open' : ''} bg-white ${addBorderBottom ? 'md:border-b border-gray-200' : ''} ${isLeft ? 'md:border-r border-gray-200' : ''}`}
-            >
-              <div
-                className="cap-head flex items-center justify-between cursor-pointer p-8 md:p-10"
-                onClick={() => toggleCap(i)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCap(i); } }}
-              >
-                <div className="flex items-center gap-8">
-                  <span className="cap-mark text-base md:text-lg text-orange-600 font-semibold">{s.mark}</span>
-                  <span className="cap-title font-serif text-lg md:text-xl lg:text-2xl text-gray-900">{s.title}</span>
-                </div>
-                <span className="cap-toggle text-3xl md:text-4xl text-gray-400">{isOpen ? '−' : '+'}</span>
-              </div>
-
-              <div
-                className="cap-body overflow-hidden transition-all duration-300"
-                style={{ maxHeight: isOpen ? `${heights[i] ?? 0}px` : "0px" }}
-              >
-                <div ref={(el) => { innerRefs.current[i] = el; }} className="cap-body-inner p-8 md:p-10 text-base md:text-lg text-gray-700">
-                  {s.desc}
-                  {s.stack && (
-                    <div className="cap-stack mt-3 flex flex-wrap gap-2">
-                      {s.stack.map((t) => (
-                        <span key={t} className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded">{t}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      </div>
-    </section>
-  );
+			</div>
+		</section>
+	);
 };
 
 export default WhatWeDeliverSection;

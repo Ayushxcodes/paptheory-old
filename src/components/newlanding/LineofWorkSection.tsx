@@ -124,8 +124,9 @@ const LineofWorkSection: React.FC<Props> = ({ onSelect }) => {
 						className={`wwd-row ${idx % 2 === 1 ? 'reverse md:flex-row-reverse' : ''} flex flex-col md:flex-row items-stretch gap-6 py-10 md:py-12 border-t border-gray-200 cursor-pointer transform transition-all duration-700 ${revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
 					>
 						<div className="wwd-text flex-1 px-2 md:px-8 flex flex-col justify-center">
-							<div className="wwd-index text-sm text-orange-600 font-medium mb-4">{it.index} — <span className="text-gray-900">{it.name}</span></div>
-							<div className="wwd-name font-serif text-4xl md:text-6xl lg:text-7xl text-gray-900 leading-tight">{it.name}</div>
+							<div className="wwd-name font-serif text-4xl md:text-6xl lg:text-7xl text-orange-600 leading-tight mb-4">
+								{it.index} — <span className="text-gray-900">{it.name}</span>
+							</div>
 							<div className="wwd-desc text-base md:text-lg text-gray-600 mt-4 max-w-3xl">{it.desc}</div>
 							<div className="wwd-tags flex flex-wrap gap-3 mt-6">
 								{it.services.map((s) => (

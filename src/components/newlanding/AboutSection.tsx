@@ -230,13 +230,19 @@ const AboutSection: React.FC = () => {
 					are built together.
 				</motion.h2>
 				<motion.p variants={textItemVariants} className="studio-lead text-lg md:text-xl text-gray-800 font-medium mt-8 leading-relaxed">
-					A brand&apos;s story and the technology that delivers it are no longer separate jobs. <em className="italic text-orange-500">We do both.</em>
+					A brand&apos;s story and the technology that delivers it can no longer exist in separate worlds. At Paper Theory Network, they don&apos;t.
 				</motion.p>
 				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
-					A campaign is also a data problem. A product launch is also an engineering one. Paper Theory Networks is built so the people who shape what a brand says also build how it reaches, measures and runs — communications, creative, media and technology as one team, not four vendors.
+					Modern growth demands more than great creative or great technology—it demands both, working as one.
 				</motion.p>
 				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
-					It means fewer hand-offs, a single standard of craft, and ideas that hold their shape from first thought to live system in production. It&apos;s how we work with national brands and global enterprise clients alike.
+					At Paper Theory Network, strategy, communications, creative, media and technology operate as a single team from day one. The people shaping your brand&apos;s message are the same people building the systems that deliver, measure and optimize it.
+				</motion.p>
+				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
+					The result is faster execution, clearer accountability and stronger outcomes. Fewer handoffs. Less complexity. More momentum.
+				</motion.p>
+				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
+					From national brands to global enterprises, we create ideas that don&apos;t get diluted in execution—they scale, perform and drive measurable business impact.
 				</motion.p>
 
 				
