@@ -62,7 +62,7 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       mobileMenuOpen
-        ? (isScrolled ? 'bg-white' : 'bg-black/95 backdrop-blur-md')
+        ? (isScrolled || isLightPage ? 'bg-white' : 'bg-black/95 backdrop-blur-md')
         : (isScrolled ? 'bg-white shadow-md' : 'bg-transparent')
     }`}>
       <div className="mx-auto max-w-[1200px] px-6 h-[72px] flex items-center justify-between">
@@ -140,7 +140,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className={`md:hidden transition-colors duration-300 border-t max-h-[calc(100vh-72px)] overflow-y-auto ${
-          isScrolled
+          isScrolled || isLightPage
             ? 'bg-white border-neutral-200'
             : 'bg-black/95 backdrop-blur-md border-white/10'
         }`}>
