@@ -93,8 +93,19 @@ const LineofWorkSection: React.FC<Props> = ({ onSelect }) => {
 	};
 
 	return (
-		<section id="work" className="section bg-white py-8 md:py-10 px-6 md:px-14 text-gray-900">
+		<section id="work" className="section bg-white py-8 md:py-10 px-6 md:px-14 text-gray-900 relative">
+			{/* Orange gradient divider line that animates from left to right in a loop */}
+			<div className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden">
+				<div 
+					className="w-full h-full bg-gradient-to-r from-[#e8500a]/50 via-[#e8500a]/20 to-transparent"
+					style={{ animation: 'lineMove 3.5s linear infinite' }}
+				/>
+			</div>
 			<style>{`
+				@keyframes lineMove {
+					0% { transform: translateX(-100%); }
+					100% { transform: translateX(100%); }
+				}
 				.wwd-row{position:relative;overflow:hidden}
 				/* wider, darker and slower orange flash */
 				.wwd-row::before{content:'';position:absolute;left:-220%;top:-60%;width:120%;height:240%;background:linear-gradient(120deg,rgba(194,65,12,0) 0%, rgba(194,65,12,0.34) 50%, rgba(194,65,12,0) 100%);transform:translateX(-220%) rotate(-12deg);opacity:0;pointer-events:none}
@@ -121,7 +132,7 @@ const LineofWorkSection: React.FC<Props> = ({ onSelect }) => {
 						tabIndex={0}
 						onClick={() => handleClick(it.id)}
 						onKeyDown={(e) => { if (e.key === 'Enter') handleClick(it.id); }}
-						className={`wwd-row ${idx % 2 === 1 ? 'reverse md:flex-row-reverse' : ''} flex flex-col md:flex-row items-stretch gap-6 py-10 md:py-12 border-t border-gray-200 cursor-pointer transform transition-all duration-700 ${revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+						className={`wwd-row ${idx % 2 === 1 ? 'reverse md:flex-row-reverse' : ''} flex flex-col md:flex-row items-stretch gap-6 py-10 md:py-12 ${idx === 0 ? '' : 'border-t border-gray-200'} cursor-pointer transform transition-all duration-700 ${revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
 					>
 						<div className="wwd-text flex-1 px-2 md:px-8 flex flex-col justify-center">
 							<div className="wwd-name font-serif text-3xl md:text-5xl lg:text-5xl text-orange-600 leading-tight mb-4">
@@ -148,6 +159,13 @@ const LineofWorkSection: React.FC<Props> = ({ onSelect }) => {
 						</div>
 					</div>
 				))}
+			</div>
+			{/* Orange gradient divider line at the bottom that also animates from left to right */}
+			<div className="absolute bottom-0 left-0 right-0 h-[1px] overflow-hidden">
+				<div 
+					className="w-full h-full bg-gradient-to-r from-[#e8500a]/50 via-[#e8500a]/20 to-transparent"
+					style={{ animation: 'lineMove 3.5s linear infinite' }}
+				/>
 			</div>
 		</section>
 	);

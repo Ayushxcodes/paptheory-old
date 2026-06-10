@@ -60,10 +60,7 @@ const WorkSection: React.FC = () => {
                 className="proj-arrow hidden md:inline-flex items-center justify-center text-gray-500 transition-transform duration-200 transform group-hover:text-orange-500 group-hover:translate-x-1 group-hover:-translate-y-1"
                 onClick={() => { /* placeholder: navigate to project or open modal */ }}
               >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M7 17L17 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M7 7h10v10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                
               </button>
             </div>
           ))}
@@ -72,7 +69,7 @@ const WorkSection: React.FC = () => {
         
       </div>
 
-      <div className="cta-strip py-12 w-full">
+      <div className="cta-strip bg-orange-500 py-12 w-full">
         <div className="w-full px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="cta-strip-text font-serif text-2xl md:text-3xl lg:text-5xl text-black">Let&apos;s get your message<br />to the right audience.</div>
           <button onClick={handleContact} className="btn-dark bg-black text-white px-6 py-3 rounded-full">Plan a campaign →</button>

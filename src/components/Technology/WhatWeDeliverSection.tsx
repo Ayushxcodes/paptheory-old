@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "motion/react";
 
 const SERVICES = [
 	{
@@ -141,6 +141,57 @@ const tagVariants = {
 	},
 };
 
+const gridContainerVariants: Variants = {
+	hidden: {},
+	visible: {
+		transition: {
+			staggerChildren: 0.08,
+		},
+	},
+};
+
+const rowVariants: Variants = {
+	hidden: { opacity: 0, y: 25 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.6,
+			ease: "easeOut",
+		},
+	},
+	hover: {
+		backgroundColor: "#fffbf9",
+		transition: {
+			duration: 0.25,
+			ease: "easeOut",
+		},
+	},
+};
+
+const markVariants: Variants = {
+	hidden: { scale: 0.6, opacity: 0, color: "transparent" },
+	visible: {
+		scale: 1,
+		opacity: 1,
+		color: "transparent",
+		transition: {
+			type: "spring",
+			stiffness: 110,
+			damping: 10,
+		},
+	},
+	hover: {
+		color: "#e8500a",
+		scale: 1.05,
+		transition: {
+			type: "spring",
+			stiffness: 300,
+			damping: 15,
+		},
+	},
+};
+
 const WhatWeDeliverSection: React.FC = () => {
 	const [openIndex, setOpenIndex] = useState<number>(0);
 
@@ -163,15 +214,23 @@ const WhatWeDeliverSection: React.FC = () => {
 				</div>
 
 				{/* Accordion Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 border border-neutral-400/60 rounded-3xl overflow-hidden">
+				<motion.div 
+					variants={gridContainerVariants}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, margin: "-80px" }}
+					className="grid grid-cols-1 md:grid-cols-2 border border-neutral-200 rounded-3xl overflow-hidden"
+				>
 					{SERVICES.map((s, i) => {
 						const isOpen = openIndex === i;
 						const isLeft = i % 2 === 0;
 						
 						return (
-							<div
+							<motion.div
 								key={s.mark}
-								className={`bg-white transition-all duration-300 border-neutral-400/60 ${
+								variants={rowVariants}
+								whileHover="hover"
+								className={`bg-white transition-all duration-300 border-neutral-200 relative ${
 									isLeft ? "md:border-r" : ""
 								} ${
 									i < 5 ? "border-b" : ""
@@ -193,9 +252,13 @@ const WhatWeDeliverSection: React.FC = () => {
 									}}
 								>
 									<div className="flex flex-col items-start">
-										<span className="text-xs md:text-sm text-[#e8500a] font-semibold tracking-wider mb-2">
+										<motion.span 
+											className="text-4xl md:text-5xl font-extrabold mb-3" 
+											variants={markVariants}
+											style={{ WebkitTextStroke: "1px #e8500a", color: "transparent" }}
+										>
 											{s.mark}
-										</span>
+										</motion.span>
 										<span className="font-serif text-xl md:text-2xl lg:text-[26px] text-neutral-900 font-normal leading-snug">
 											{s.title}
 										</span>
@@ -242,10 +305,10 @@ const WhatWeDeliverSection: React.FC = () => {
 										)}
 									</div>
 								</div>
-							</div>
+							</motion.div>
 						);
 					})}
-				</div>
+				</motion.div>
 
 			</div>
 		</section>

@@ -78,6 +78,16 @@ const HeroSection: React.FC = () => {
 					</div>
 
 				</div>
+
+				{/* Scroll Indicator */}
+				<div 
+					className="scroll-indicator absolute right-6 bottom-8 md:right-12 md:bottom-12 z-20 text-xs text-white/90 font-medium tracking-[0.08em] uppercase"
+					onClick={() => {
+						window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+					}}
+				>
+					SCROLL <span className="scroll-arrow inline-block ml-1">↓</span>
+				</div>
 			</section>
 		</div>
 	);

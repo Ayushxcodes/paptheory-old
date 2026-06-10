@@ -169,7 +169,7 @@ export default function AdvisorSection() {
 								Our technology practice is led by an SAP-certified BTP Solution Architect with 14+ years of enterprise delivery — with production systems shipped onsite in Australia, Germany and India across mining, manufacturing, oil & gas and large-scale enterprise programmes.
 							</p>
 							<p>
-								That means when you work with us, you're not handed to a junior team behind a slide deck. You work directly with someone who has architected and built the kind of system you need — end to end, in production, at global scale.
+								That means when you work with us, you are not handed to a junior team behind a slide deck. You work directly with someone who has architected and built the kind of system you need — end to end, in production, at global scale.
 							</p>
 						</div>
 
@@ -181,7 +181,7 @@ export default function AdvisorSection() {
 								Prashant Agarwal
 							</span>
 							<span className="text-xs md:text-sm text-neutral-500 font-light">
-								Technology Consulting Partner · Paper Theory Networks
+								Technology Consulting Partner · Paper Theory Network
 							</span>
 						</div>
 					</motion.div>

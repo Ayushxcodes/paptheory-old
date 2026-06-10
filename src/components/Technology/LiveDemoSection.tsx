@@ -45,7 +45,7 @@ const CASES = [
 		imageSrc: "/tech1.png",
 		stats: [
 			{ value: "45,000+", label: "OBJECTS CLASSIFIED" },
-			{ value: "Live/SAP Analytics Cloud", label: "OBJECTS CLASSIFIED" },
+			{ value: "Live", label: "SAP Analytics Cloud" },
 		],
 		tags: ["SAP BTP", "SAP Analytics Cloud", "CAPM", "S/4HANA"],
 		cols: "lg:col-span-3",
@@ -72,8 +72,8 @@ const CASES = [
 	},
 	{
 		isCTA: true,
-		category: "LET'S BUILD YOURS",
-		title: "The method travels. New sectors stood up in weeks, not quarters.",
+		category: "The next tile could be yours",
+		title: "Every project above started with one question.",
 		cols: "lg:col-span-2",
 	},
 ];
@@ -104,12 +104,17 @@ const LiveDemoSection: React.FC = () => {
 	const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
 	const [activeDemo, setActiveDemo] = useState<typeof DEMOS[number] | null>(null);
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+	const [playingStates, setPlayingStates] = useState<Record<number, boolean>>({});
 
 	const handleMouseEnter = (index: number) => {
 		setHoveredIndex(index);
 		const v = videoRefs.current[index];
 		if (v) {
-			v.play().catch(() => {});
+			v.play()
+				.then(() => {
+					setPlayingStates((prev) => ({ ...prev, [index]: true }));
+				})
+				.catch(() => {});
 		}
 	};
 
@@ -119,6 +124,22 @@ const LiveDemoSection: React.FC = () => {
 		if (v) {
 			v.pause();
 			v.currentTime = 0;
+			setPlayingStates((prev) => ({ ...prev, [index]: false }));
+		}
+	};
+
+	const togglePlay = (index: number) => {
+		const v = videoRefs.current[index];
+		if (!v) return;
+		if (v.paused) {
+			v.play()
+				.then(() => {
+					setPlayingStates((prev) => ({ ...prev, [index]: true }));
+				})
+				.catch(() => {});
+		} else {
+			v.pause();
+			setPlayingStates((prev) => ({ ...prev, [index]: false }));
 		}
 	};
 
@@ -202,6 +223,26 @@ const LiveDemoSection: React.FC = () => {
 									poster={d.poster}
 								/>
 
+								{/* Play/Pause Button */}
+								<button
+									onClick={(e) => {
+										e.stopPropagation(); // Prevent opening the modal
+										togglePlay(i);
+									}}
+									className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-[#e8500a] text-white w-14 h-14 rounded-full backdrop-blur-md transition-all duration-300 border border-white/20 flex items-center justify-center cursor-pointer shadow-2xl scale-100 hover:scale-110"
+									aria-label={playingStates[i] ? "Pause video" : "Play video"}
+								>
+									{playingStates[i] ? (
+										<svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+											<path fillRule="evenodd" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" clipRule="evenodd" />
+										</svg>
+									) : (
+										<svg className="w-5 h-5 fill-white translate-x-0.5" viewBox="0 0 24 24">
+											<path fillRule="evenodd" d="M8 5v14l11-7z" clipRule="evenodd" />
+										</svg>
+									)}
+								</button>
+
 								{/* Dark overlay gradient for text contrast */}
 								<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-0"></div>
 
@@ -259,11 +300,11 @@ const LiveDemoSection: React.FC = () => {
 										<span className="text-xs md:text-sm text-[#e8500a] font-semibold tracking-[0.25em] uppercase mb-5 block">
 											{c.category}
 										</span>
-										<h3 className="font-serif text-3xl md:text-4xl lg:text-[38px] text-neutral-900 font-bold leading-[1.22] tracking-tight mb-6">
-											The method <span className="text-[#e8500a]"><em className="italic font-serif">travels</em></span>. New sectors stood up in weeks, not quarters.
+										<h3 className="font-sans text-3xl md:text-4xl lg:text-[38px] text-neutral-900 font-bold leading-[1.22] tracking-tight mb-6">
+											Every <span className="font-serif italic text-[#e8500a] font-normal">project</span> above started with one question.
 										</h3>
 										<div className="flex items-center gap-2 text-[#e8500a] font-semibold text-sm md:text-base group/link">
-											<span>Start a conversation</span>
+											<span>Ask it now</span>
 											<svg className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
 											</svg>

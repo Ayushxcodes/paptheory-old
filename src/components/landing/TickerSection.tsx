@@ -29,7 +29,7 @@ const TickerSection = () => {
         </div>
 
         {/* Infinite Ticker */}
-        <div className="relative border border-neutral-200/60 bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.02)] py-10 overflow-hidden">
+        <div className="relative bg-white rounded-2xl py-10 overflow-hidden">
           {/* Edge Fade Gradients */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
           <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>

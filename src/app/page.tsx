@@ -14,6 +14,7 @@ import React, { useState } from 'react'
 import AboutSection from '@/components/newlanding/AboutSection'
 import LineofWorkSection from '@/components/newlanding/LineofWorkSection'
 import TestimonialsSection from '@/components/newlanding/TestimonialsSection'
+import CTASection from '@/components/newlanding/CTASection'
 
 const Homepage = () => {
   const [showAnimation, setShowAnimation] = useState(true)
@@ -63,7 +64,8 @@ const Homepage = () => {
           <AboutSection />
           <LineofWorkSection />
           <TickerSection />
-          <TestimonialsSection />
+          
+          <CTASection />
           
         </motion.div>
       )}

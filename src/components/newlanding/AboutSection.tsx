@@ -233,9 +233,6 @@ const AboutSection: React.FC = () => {
 					A brand&apos;s story and the technology that delivers it can no longer exist in separate worlds. At Paper Theory Network, they don&apos;t.
 				</motion.p>
 				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
-					Modern growth demands more than great creative or great technology—it demands both, working as one.
-				</motion.p>
-				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
 					At Paper Theory Network, strategy, communications, creative, media and technology operate as a single team from day one. The people shaping your brand&apos;s message are the same people building the systems that deliver, measure and optimize it.
 				</motion.p>
 				<motion.p variants={textItemVariants} className="studio-body text-gray-600 mt-4 leading-relaxed text-base">
