@@ -108,8 +108,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-black">Email</p>
-                      <p className="text-gray-600">official@papertheorynet.com</p>
-                      <p className="text-gray-600">consulting@papertheorynet.com</p>
+                      <p className="text-gray-600"><span className="font-medium text-[#e8500a] mr-1.5">General:</span>official@papertheorynet.com</p>
+                      <p className="text-gray-600"><span className="font-medium text-[#e8500a] mr-1.5">IT & Tech:</span>consulting@papertheorynet.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

@@ -33,6 +33,8 @@ export default function Navbar() {
     return p.endsWith("/") ? p.slice(0, -1) : p;
   };
 
+  const isLightPage = ["/contact", "/privacy", "/terms", "/works"].includes(normalizePath(pathname));
+
   const getLinkClass = (path: string) => {
     const active = normalizePath(pathname) === normalizePath(path);
     if (active) {
@@ -41,7 +43,7 @@ export default function Navbar() {
       }`;
     }
     return `px-4 py-2 rounded-full transition-all duration-300 hover:text-[#f99216] ${
-      isScrolled ? 'text-black' : 'text-white'
+      isScrolled || isLightPage ? 'text-black' : 'text-white'
     }`;
   };
 
@@ -53,7 +55,7 @@ export default function Navbar() {
       }`;
     }
     return `block w-full text-left px-4 py-2.5 rounded-lg text-sm transition-all duration-300 hover:text-[#f99216] ${
-      isScrolled ? 'text-black hover:bg-neutral-50' : 'text-white hover:bg-white/5'
+      isScrolled || isLightPage ? 'text-black hover:bg-neutral-50' : 'text-white hover:bg-white/5'
     }`;
   };
 
@@ -78,7 +80,7 @@ export default function Navbar() {
           />
           <div className="flex flex-col justify-center h-10 sm:h-12 md:h-20 gap-y-0.5 md:gap-y-1">
             <span className={`text-[8px] sm:text-[9px] md:text-[13px] font-semibold tracking-[0.3em] uppercase leading-none transition-colors duration-200 ${
-              isScrolled ? 'text-black' : 'text-[#ffffff]'
+              isScrolled || isLightPage ? 'text-black' : 'text-[#ffffff]'
             } font-sans`}>
               PAPER THEORY
             </span>
@@ -126,8 +128,8 @@ export default function Navbar() {
         <button
           className={`md:hidden p-2 rounded-md transition-colors ${
             mobileMenuOpen
-              ? (isScrolled ? 'text-black hover:bg-black/10' : 'text-white hover:bg-white/10')
-              : (isScrolled ? 'text-black hover:bg-black/10' : 'text-white hover:bg-white/10')
+              ? (isScrolled || isLightPage ? 'text-black hover:bg-black/10' : 'text-white hover:bg-white/10')
+              : (isScrolled || isLightPage ? 'text-black hover:bg-black/10' : 'text-white hover:bg-white/10')
           }`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >

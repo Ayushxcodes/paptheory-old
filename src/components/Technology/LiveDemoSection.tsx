@@ -226,11 +226,11 @@ const LiveDemoSection: React.FC = () => {
 								{/* Play/Pause Button */}
 								<button
 									onClick={(e) => {
-										e.stopPropagation(); // Prevent opening the modal
-										togglePlay(i);
+										e.stopPropagation();
+										setActiveDemo(d);
 									}}
 									className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-[#e8500a] text-white w-14 h-14 rounded-full backdrop-blur-md transition-all duration-300 border border-white/20 flex items-center justify-center cursor-pointer shadow-2xl scale-100 hover:scale-110"
-									aria-label={playingStates[i] ? "Pause video" : "Play video"}
+									aria-label="Play video"
 								>
 									{playingStates[i] ? (
 										<svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
@@ -321,15 +321,13 @@ const LiveDemoSection: React.FC = () => {
 								className={`${c.cols} bg-white border border-neutral-200/50 rounded-3xl p-8 md:p-10 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.008)] transition-all duration-300 hover:-translate-y-2 hover:border-[#e8500a]`}
 							>
 								<div className="w-full">
-									{/* Logo Container */}
-									<div className="w-full h-64 bg-[#f5efe9]/60 rounded-2xl relative overflow-hidden mb-6 border border-neutral-200/20">
-										<Image
-											src={c.imageSrc || ""}
-											alt={c.title || ""}
-											fill
-											className="object-cover"
-										/>
-									</div>
+									<Image
+										src={c.imageSrc || ""}
+										alt={c.title || ""}
+										width={600}
+										height={375}
+										className="w-full h-auto rounded-2xl mb-6"
+									/>
 
 									<span className="text-[11px] md:text-xs text-neutral-400 font-semibold tracking-wider uppercase mb-3 block">
 										{c.category}
