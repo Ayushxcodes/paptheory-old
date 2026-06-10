@@ -120,7 +120,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-black">Location</p>
-                      <p className="text-gray-600">Mumbai, India</p>
+                      <p className="text-gray-600">Gurgaon, India</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
